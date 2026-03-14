@@ -1,0 +1,68 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "tiktok-live-api"
+version = "1.0.2"
+description = "Unofficial TikTok LIVE API Client — Real-time chat, gifts, viewers, battles, and live captions from any TikTok livestream via the TikTool managed API."
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+authors = [
+    {name = "TikTool", email = "support@tik.tools"}
+]
+keywords = [
+    "tiktok",
+    "tiktok-live",
+    "tiktok-api",
+    "tiktok-live-api",
+    "tiktok-live-connector",
+    "live-streaming",
+    "websocket",
+    "chat",
+    "gifts",
+    "webcast",
+    "real-time",
+    "speech-to-text",
+    "captions",
+    "transcription",
+    "translation",
+    "tiktok-data",
+    "tiktok-bot",
+    "live-chat",
+    "tiktok-live-python",
+    "tiktok-tools",
+    "euler-stream",
+    "tiktok-live-sdk"
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Internet",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Multimedia :: Sound/Audio :: Speech",
+    "Typing :: Typed",
+]
+dependencies = [
+    "websockets>=11.0",
+]
+
+[project.urls]
+Homepage = "https://tik.tools"
+Documentation = "https://tik.tools/docs"
+Repository = "https://github.com/tiktool/live-python"
+Issues = "https://github.com/tiktool/live-python/issues"
+Changelog = "https://github.com/tiktool/live-python/releases"
+
+[tool.hatch.build.targets.wheel]
+packages = ["tiktok_live_api"]
