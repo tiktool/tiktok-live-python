@@ -7,6 +7,7 @@
 [![Python](https://img.shields.io/pypi/pyversions/tiktok-live-api)](https://pypi.org/project/tiktok-live-api/)
 [![Stars](https://img.shields.io/github/stars/tiktool/tiktok-live-python?style=flat&color=0274b5)](https://github.com/tiktool/tiktok-live-python/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Discord](https://img.shields.io/discord/1482387222912172159?logo=discord&label=Discord&color=5865F2)](https://discord.gg/y8TwuFBAmD)
 
 > **99.9% uptime** — Never breaks when TikTok updates. No protobuf, no reverse engineering, no maintenance required. Powered by the [TikTool](https://tik.tools) managed WebSocket API.
 
