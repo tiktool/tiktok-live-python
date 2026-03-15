@@ -47,6 +47,7 @@ class ChatEvent(TypedDict, total=False):
     user: TikTokUser
     comment: str
     emotes: List[Dict[str, Any]]
+    starred: Dict[str, int]  # {"claps": N, "score": N} — present only for starred messages
 
 
 class GiftEvent(TypedDict, total=False):
