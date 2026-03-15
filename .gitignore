@@ -13,3 +13,6 @@ build/
 # Probe/test files
 *-probe*
 test-*
+
+# Deploy scripts (never commit)
+deploy.*
