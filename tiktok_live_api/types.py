@@ -24,6 +24,7 @@ __all__ = [
     "SocialEvent",
     "RoomUserSeqEvent",
     "BattleEvent",
+    "RoomPinEvent",
     "CaptionEvent",
     "TranslationEvent",
 ]
@@ -94,6 +95,30 @@ class BattleEvent(TypedDict, total=False):
     type: str
     teams: List[Dict[str, Any]]
     scores: List[int]
+
+
+class RoomPinEvent(TypedDict, total=False):
+    """Payload for ``roomPin`` (starred/pinned message) events.
+
+    Fired when a host or moderator pins a chat message.
+    """
+
+    user: TikTokUser
+    """User who wrote the pinned message."""
+    comment: str
+    """The pinned comment text."""
+    action: int
+    """Pin action: 1 = pin, 2 = unpin."""
+    durationSeconds: int
+    """How long the message stays pinned (seconds)."""
+    pinnedAt: int
+    """Timestamp when the message was pinned (ms)."""
+    originalMsgType: str
+    """Original message type, e.g. 'WebcastChatMessage'."""
+    originalMsgId: str
+    """ID of the original chat message that was pinned."""
+    operatorUserId: str
+    """User ID of the host/moderator who pinned the message."""
 
 
 class CaptionEvent(TypedDict, total=False):

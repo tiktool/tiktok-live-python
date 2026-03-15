@@ -203,6 +203,7 @@ asyncio.run(listen())
 | `subscribe` | New subscriber | `user` |
 | `roomUserSeq` | Viewer count update | `viewerCount`, `topViewers` |
 | `battle` | Battle event | `type`, `teams`, `scores` |
+| `roomPin` | Pinned/starred message | `user`, `comment`, `action`, `durationSeconds` |
 | `envelope` | Treasure chest | `diamonds`, `user` |
 | `streamEnd` | Stream ended | `reason` |
 | `connected` | WebSocket connected | `uniqueId` |

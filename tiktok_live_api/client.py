@@ -87,8 +87,8 @@ class TikTokLive:
 
         Supported events:
             connected, chat, gift, like, follow, share, member, subscribe,
-            roomUserSeq, roomInfo, battle, envelope, streamEnd, error,
-            disconnected, event (catch-all)
+            roomUserSeq, roomPin, roomInfo, battle, envelope, streamEnd,
+            error, disconnected, event (catch-all)
 
         Usage as decorator::
 

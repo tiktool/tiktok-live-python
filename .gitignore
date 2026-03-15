@@ -5,5 +5,11 @@ __pycache__/
 dist/
 build/
 .env
+.env.*
+!.env.example
 *.tar.gz
 .eggs/
+
+# Probe/test files
+*-probe*
+test-*
