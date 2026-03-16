@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "tiktok-live-api"
-version = "1.2.1"
+version = "1.2.2"
 description = "Unofficial TikTok LIVE API Client — Real-time chat, gifts, viewers, battles, and live captions from any TikTok livestream via the TikTool managed API."
 readme = "README.md"
 license = {text = "MIT"}
