@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="banner.png" alt="tiktok-live-api Python" width="100%" />
+  <img src="https://raw.githubusercontent.com/tiktool/tiktok-live-python/main/banner.png" alt="tiktok-live-api Python" width="100%" />
 </p>
 
 # TikTok LIVE API — Python
