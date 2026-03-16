@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="banner.png" alt="tiktok-live-api Python" width="100%" />
+</p>
+
 # TikTok LIVE API — Python
 
 ### The managed TikTok Live connector for Python — receive chat, gifts, viewers, battles & 18+ events from any TikTok LIVE stream. Zero maintenance, zero breakages.
