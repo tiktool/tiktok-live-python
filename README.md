@@ -32,6 +32,18 @@
 
 **🎤 Exclusive:** [Real-Time Live Captions](#-live-captions-speech-to-text) — AI-powered speech-to-text with translation & speaker diarization. **No other TikTok library offers this.**
 
+## 🚀 One-Command Quick Start
+
+Instantly connect to a live TikTok stream and print real-time events to your terminal.
+
+```bash
+pip install tiktok-live-api
+python -m tiktok_live_api
+```
+*Or connect to a specific stream:* `python -m tiktok_live_api @username`
+
+---
+
 ## Table of Contents
 
 - [Why tiktok-live-api?](#-why-tiktok-live-api)
