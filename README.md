@@ -222,7 +222,9 @@ asyncio.run(listen())
 | `member` | Viewer joined | `user` |
 | `subscribe` | New subscriber | `user` |
 | `roomUserSeq` | Viewer count update | `viewerCount`, `topViewers` |
-| `battle` | Battle event | `type`, `teams`, `scores` |
+| `battle` | PK start / end / status change | `battleId`, `status` (1=ACTIVE / 2=STARTING / 3=ENDED / 4=PREPARING), `battleDuration`, `teams` |
+| `battleArmies` | Live PK score update | `battleId`, `status`, `matchId`, `sessionId`, `durationSec`, `secsRemaining`, `hosts[]` — each host has `teamTotalScore` + `contributors[]` (MVP first) |
+| `battleItemCard` | Booster multipliers, gloves, mist, match-guide, thunder, extra-time | `effect` (`'gloves'` / `'mist'` / `'booster_x2'` / `'booster_x3'` / `'match_guide'` / ...), `multiplier` (2 or 3), `senderUserId`, `senderNickname`, `activatedAtSec`, `durationSec`, `endsAtSec`, `commentTemplate` |
 | `roomPin` | Pinned/starred message | `user`, `comment`, `action`, `durationSeconds` |
 | `envelope` | Treasure chest | `diamonds`, `user` |
 | `streamEnd` | Stream ended | `reason` |
@@ -232,6 +234,37 @@ asyncio.run(listen())
 | `event` | Catch-all (every event) | Full raw event payload |
 
 All events include the full raw TikTok payload, giving you access to every field TikTok provides.
+
+### Battle / PK example
+
+```python
+from tiktok_live_api import TikTokLive
+
+client = TikTokLive(unique_id="creator_username", api_key="tk_...")
+
+@client.on("battle")
+def on_battle(e):
+    print(f"PK status={e['status']} id={e['battleId']} duration={e['battleDuration']}s")
+
+@client.on("battleArmies")
+def on_armies(e):
+    print(f"Countdown: {e.get('secsRemaining')}s")
+    for host in e.get("hosts", []):
+        print(f"  @{host['hostUserId']} total={host['teamTotalScore']}")
+        if host["contributors"]:
+            mvp = host["contributors"][0]
+            print(f"    MVP {mvp['nickname']} score={mvp['score']}")
+
+@client.on("battleItemCard")
+def on_card(e):
+    if e["multiplier"] > 0:
+        print(f"x{e['multiplier']} booster from @{e['senderUniqueId']}")
+    else:
+        print(f"Effect {e['effect']} from @{e['senderUniqueId']} ({e['durationSec']}s)")
+
+client.connect()
+```
+
 
 ---
 
