@@ -24,6 +24,10 @@ __all__ = [
     "SocialEvent",
     "RoomUserSeqEvent",
     "BattleEvent",
+    "BattleArmiesEvent",
+    "BattleItemCardEvent",
+    "BattleHost",
+    "BattleContributor",
     "RoomPinEvent",
     "CaptionEvent",
     "TranslationEvent",
@@ -91,11 +95,72 @@ class RoomUserSeqEvent(TypedDict, total=False):
 
 
 class BattleEvent(TypedDict, total=False):
-    """Payload for ``battle`` events."""
+    """Payload for ``battle`` events (PK start / end / countdown)."""
 
     type: str
+    battleId: str
+    status: int
+    """1=ACTIVE, 2=STARTING, 3=ENDED, 4=PREPARING"""
+    battleDuration: int
     teams: List[Dict[str, Any]]
     scores: List[int]
+
+
+class BattleContributor(TypedDict, total=False):
+    """One contributor (gifter) on a battle host's side."""
+
+    userId: str
+    score: int
+    nickname: str
+
+
+class BattleHost(TypedDict, total=False):
+    """One host on a battle side — multi-guest PK breakdown."""
+
+    hostUserId: str
+    teamTotalScore: int
+    teamIdx: int
+    contributors: List[BattleContributor]
+    """Sorted MVP first (highest score → lowest)."""
+
+
+class BattleArmiesEvent(TypedDict, total=False):
+    """Payload for ``battleArmies`` events — score updates during PK."""
+
+    battleId: str
+    status: int
+    teams: List[Dict[str, Any]]
+    matchId: str
+    """Stable across multi-round PK."""
+    sessionId: str
+    """Per-round session id."""
+    startedAtMs: int
+    serverTsMs: int
+    sessionTag: str
+    durationSec: int
+    secsRemaining: int
+    """Countdown: duration − (serverTs − startedAt)."""
+    hosts: List[BattleHost]
+
+
+class BattleItemCardEvent(TypedDict, total=False):
+    """Payload for ``battleItemCard`` events — booster multipliers, gloves, mist, etc."""
+
+    battleId: str
+    cardType: int
+    """2=gloves/crit, 3=mist, 4=match_guide, ..."""
+    effect: str
+    """'gloves' | 'mist' | 'booster_x2' | 'booster_x3' | 'match_guide' | 'thunder' | 'extra_time' | raw key."""
+    effectKey: str
+    multiplier: int
+    """2 or 3 for booster_x2/x3, otherwise 0."""
+    senderUserId: str
+    senderNickname: str
+    senderUniqueId: str
+    activatedAtSec: int
+    durationSec: int
+    endsAtSec: int
+    commentTemplate: str
 
 
 class RoomPinEvent(TypedDict, total=False):
