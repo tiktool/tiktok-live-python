@@ -406,9 +406,16 @@ client.run()
 | Tier | Requests/Day | WS Connections | WS Duration | Price |
 |------|-------------|----------------|-------------|-------|
 | **Sandbox** | 50 | 1 | 5 min | **Free** |
-| **Basic** | 10,000 | 3 | 8 hours | $7/week |
-| **Pro** | 75,000 | 50 | 8 hours | $15/week |
-| **Ultra** | 300,000 | 500 | 8 hours | $45/week |
+| **Basic** | 10,000 | 3 | 8 hours | $9/wk +tax |
+| **Pro** | 75,000 | 50 | 8 hours | $19/wk +tax |
+| **Ultra** | 300,000 | 250 | 8 hours | $58/wk +tax |
+
+Full plan details at [tik.tools/pricing](https://tik.tools/pricing). Highlights:
+
+- **Sandbox** ($0): 50 req/day · 1 WS (5 min limit) · basic endpoints · signatures included
+- **Basic** ($9/wk): 10K req/day · 3 WS · all endpoints · 1 AI caption stream
+- **Pro** ($19/wk, **most popular**): 75K req/day · 50 WS · all endpoints · 5 AI caption streams · priority routing · chat support
+- **Ultra** ($58/wk): 300K req/day · 250 WS · 20 AI caption streams · **League Rankings API** (Ultra only) · 99.5% uptime SLA · priority chat support
 
 Get your free API key → [tik.tools](https://tik.tools)
 
