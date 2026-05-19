@@ -157,10 +157,17 @@ class BattleItemCardEvent(TypedDict, total=False):
     senderUserId: str
     senderNickname: str
     senderUniqueId: str
+    senderAvatarUrl: str
     activatedAtSec: int
     durationSec: int
     endsAtSec: int
     commentTemplate: str
+    iconUrl: str
+    """Full TikTok CDN URL for the card art."""
+    iconKey: str
+    """Short identifier — ``card_mist_v3``, ``card_crit_v3``, ``top3_buffer``, ..."""
+    accentColor: str
+    """Hex accent color (``#BCD9E0`` mist, ``#E0D4BC`` gloves, ...)."""
 
 
 class RoomPinEvent(TypedDict, total=False):
