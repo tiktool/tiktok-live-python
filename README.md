@@ -23,7 +23,7 @@
     <td><br/><img width="150px" src="https://raw.githubusercontent.com/tiktool/tiktok-live-python/main/.github/logo.png" alt="TikTool Logo"><br/><br/></td>
     <td>
         <a href="https://tik.tools">
-            <strong>TikTool</strong> offers a fully managed TikTok LIVE API — real-time events, AI captions, CAPTCHA solving, and more. Free Sandbox tier. No credit card required.
+            <strong>TikTool</strong> offers a fully managed TikTok LIVE API — real-time events, AI captions, CAPTCHA solving, and more. Free Community tier (forever). No credit card required.
         </a>
     </td>
 </tr>
@@ -47,7 +47,7 @@ python -m tiktok_live_api
 
 - [Why tiktok-live-api?](#-why-tiktok-live-api)
 - [Getting Started](#-getting-started)
-- [Try It Now — 5-Minute Demo](#-try-it-now--5-minute-live-demo)
+- [Try It Now — Live Demo](#-try-it-now--live-demo)
 - [Events](#-events)
 - [Live Captions (AI STT)](#-live-captions-speech-to-text)
 - [Async Usage](#-async-usage)
@@ -71,7 +71,7 @@ python -m tiktok_live_api
 | **Feed Discovery** | ✅ See who's live | ❌ Not available | ❌ Not available |
 | **Maintenance** | ✅ Zero — we handle everything | ❌ You fix breakages | ❌ You fix breakages |
 | **Multi-Language** | ✅ Python, Node.js, Java, Go, C# | Python only | Node.js only |
-| **Free Tier** | ✅ 50 req/day, 5-min WS | ✅ Free (when it works) | ✅ Free (when it works) |
+| **Free Tier** | ✅ 2,500 req/day, 15 WS, no time limit | ✅ Free (when it works) | ✅ Free (when it works) |
 
 ---
 
@@ -113,15 +113,14 @@ That's it. **No protobuf, no signing servers, no reverse engineering, no breakag
 
 ---
 
-## 🚀 Try It Now — 5-Minute Live Demo
+## 🚀 Try It Now — Live Demo
 
-Copy-paste, run, see real-time TikTok events in your terminal. Works on the free Sandbox tier.
+Copy-paste, run, see real-time TikTok events in your terminal. Works on the free **Community** tier — no time limit, runs as long as the stream is live.
 
 ```python
-# demo.py — TikTok LIVE in 5 minutes
+# demo.py — TikTok LIVE in real time
 # pip install tiktok-live-api
 from tiktok_live_api import TikTokLive
-import signal, sys
 
 API_KEY       = "YOUR_API_KEY"        # Get free key → https://tik.tools
 LIVE_USERNAME = "tv_asahi_news"       # Any live TikTok username
@@ -131,7 +130,7 @@ events = 0
 
 @client.on("connected")
 def on_connected(event):
-    print(f"\n✅ Connected to @{LIVE_USERNAME} — listening for 5 min...\n")
+    print(f"\n✅ Connected to @{LIVE_USERNAME} — streaming events...\n")
 
 @client.on("chat")
 def on_chat(event):
@@ -160,12 +159,9 @@ def on_viewers(event):
 
 @client.on("disconnected")
 def on_disconnect(event):
-    print(f"\n📊 Done! Received {events} events.\n")
+    print(f"\n📊 Disconnected. Received {events} events.\n")
 
-# Auto-exit after 5 minutes
-if sys.platform != "win32":
-    signal.alarm(300)
-
+# Press Ctrl+C to stop. Community tier has no per-connection time limit.
 client.run()
 ```
 
@@ -184,23 +180,20 @@ async def listen():
     url = f"wss://api.tik.tools?uniqueId={LIVE_USERNAME}&apiKey={API_KEY}"
     events = 0
     async with websockets.connect(url) as ws:
-        print(f"\n✅ Connected to @{LIVE_USERNAME} — listening for 5 min...\n")
-        try:
-            async for message in asyncio.wait_for(ws, timeout=300):
-                msg = json.loads(message)
-                events += 1
-                data = msg.get("data", {})
-                user = data.get("user", {}).get("uniqueId", "")
-                event = msg.get("event", "")
-                if event == "chat":        print(f"💬 {user}: {data.get('comment', '')}")
-                elif event == "gift":      print(f"🎁 {user} sent {data.get('giftName', '')}")
-                elif event == "like":      print(f"❤️  {user} liked × {data.get('likeCount', 0)}")
-                elif event == "member":    print(f"👋 {user} joined")
-                elif event == "roomUserSeq": print(f"👀 Viewers: {data.get('viewerCount', 0)}")
-                else:                      print(f"📦 {event}")
-        except asyncio.TimeoutError:
-            pass
-    print(f"\n📊 Done! Received {events} events.\n")
+        print(f"\n✅ Connected to @{LIVE_USERNAME} — streaming events...\n")
+        async for message in ws:
+            msg = json.loads(message)
+            events += 1
+            data = msg.get("data", {})
+            user = data.get("user", {}).get("uniqueId", "")
+            event = msg.get("event", "")
+            if event == "chat":        print(f"💬 {user}: {data.get('comment', '')}")
+            elif event == "gift":      print(f"🎁 {user} sent {data.get('giftName', '')}")
+            elif event == "like":      print(f"❤️  {user} liked × {data.get('likeCount', 0)}")
+            elif event == "member":    print(f"👋 {user} joined")
+            elif event == "roomUserSeq": print(f"👀 Viewers: {data.get('viewerCount', 0)}")
+            else:                      print(f"📦 {event}")
+    print(f"\n📊 Disconnected. Received {events} events.\n")
 
 asyncio.run(listen())
 ```
