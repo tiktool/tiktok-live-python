@@ -71,7 +71,7 @@ python -m tiktok_live_api
 | **Feed Discovery** | ✅ See who's live | ❌ Not available | ❌ Not available |
 | **Maintenance** | ✅ Zero — we handle everything | ❌ You fix breakages | ❌ You fix breakages |
 | **Multi-Language** | ✅ Python, Node.js, Java, Go, C# | Python only | Node.js only |
-| **Free Tier** | ✅ 2,500 req/day, 15 WS, no time limit | ✅ Free (when it works) | ✅ Free (when it works) |
+| **Free Tier** | ✅ 2,500 req/day, 15 WS, 2h per WS | ✅ Free (when it works) | ✅ Free (when it works) |
 
 ---
 
@@ -115,7 +115,7 @@ That's it. **No protobuf, no signing servers, no reverse engineering, no breakag
 
 ## 🚀 Try It Now — Live Demo
 
-Copy-paste, run, see real-time TikTok events in your terminal. Works on the free **Community** tier — no time limit, runs as long as the stream is live.
+Copy-paste, run, see real-time TikTok events in your terminal. Works on the free **Community** tier — 2h per WS, runs as long as the stream is live.
 
 ```python
 # demo.py — TikTok LIVE in real time
@@ -161,7 +161,7 @@ def on_viewers(event):
 def on_disconnect(event):
     print(f"\n📊 Disconnected. Received {events} events.\n")
 
-# Press Ctrl+C to stop. Community tier has no per-connection time limit.
+# Press Ctrl+C to stop. Community tier caps each WebSocket at 2 hours.
 client.run()
 ```
 
@@ -397,14 +397,14 @@ client.run()
 
 | Tier | Requests/Day | WS Connections | WS Duration | Price |
 |------|-------------|----------------|-------------|-------|
-| **Community** | 2,500 | 15 | no time limit | **Free forever** |
+| **Community** | 2,500 | 15 | 2h per WS | **Free forever** |
 | **Pro** | 75,000 | 50 | 8 hours | from $59/mo +tax |
 | **Ultra** | 300,000 | 250 | 8 hours | from $219/mo +tax |
 | **Global Agency** | 300,000 | 500 + Firehose | 8 hours | $549/mo +tax |
 
 Full plan details at [tik.tools/pricing](https://tik.tools/pricing). Highlights:
 
-- **Community** ($0 forever): 2,500 req/day · 15 WS · no time limit · masked leaderboards. Build apps with masked names — upgrade when you need real identities. No datacenter proxies; requests run from your own IP.
+- **Community** ($0 forever): 2,500 req/day · 15 WS · 2h per WS · masked leaderboards. Build apps with masked names — upgrade when you need real identities. No datacenter proxies; requests run from your own IP.
 - **Pro** (monthly): 75K req/day · 50 WS · unmasked leaderboards · CAPTCHA Solver · Feed Discovery · 5 AI caption streams · priority routing · chat support
 - **Ultra** (monthly): 300K req/day · 250 WS · 20 AI caption streams · **League Rankings API** unmasked · 99.5% uptime SLA · priority chat support
 - **Global Agency** ($549/mo): Everything in Ultra + **Live Gifter Firehose WS** (region/league/global filters + min-diamond threshold) + VIP Telegram alerts + VIP Web Vault (unmasked historical visual access)
