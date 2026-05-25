@@ -4,8 +4,8 @@ build-backend = "hatchling.build"
 
 [project]
 name = "tiktok-live-api"
-version = "1.4.2"
-description = "Unofficial TikTok LIVE API Client — Real-time chat, gifts, viewers, battles, and live captions from any TikTok livestream via the TikTool managed API."
+version = "1.4.5"
+description = "Unofficial TikTok LIVE API Client - Real-time chat, gifts, viewers, battles, and live captions from any TikTok livestream via the TikTool managed API."
 readme = "README.md"
 license = {text = "MIT"}
 requires-python = ">=3.8"
@@ -65,9 +65,9 @@ dependencies = [
 [project.urls]
 Homepage = "https://tik.tools"
 Documentation = "https://tik.tools/docs"
-Repository = "https://github.com/tiktool/live-python"
-Issues = "https://github.com/tiktool/live-python/issues"
-Changelog = "https://github.com/tiktool/live-python/releases"
+Repository = "https://github.com/tiktool/tiktok-live-python"
+Issues = "https://github.com/tiktool/tiktok-live-python/issues"
+Changelog = "https://github.com/tiktool/tiktok-live-python/releases"
 
 [tool.hatch.build.targets.wheel]
 packages = ["tiktok_live_api"]

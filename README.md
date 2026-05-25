@@ -2,9 +2,9 @@
   <img src="https://raw.githubusercontent.com/tiktool/tiktok-live-python/main/banner.png" alt="tiktok-live-api Python" width="100%" />
 </p>
 
-# TikTok LIVE API — Python
+# TikTok LIVE API - Python
 
-### The managed TikTok Live connector for Python — receive chat, gifts, viewers, battles & 18+ events from any TikTok LIVE stream. Zero maintenance, zero breakages.
+### The managed TikTok Live connector for Python - receive chat, gifts, viewers, battles & 18+ events from any TikTok LIVE stream. Zero maintenance, zero breakages.
 
 [![PyPI version](https://img.shields.io/pypi/v/tiktok-live-api?color=%23ff0050&logo=pypi&logoColor=white)](https://pypi.org/project/tiktok-live-api/)
 [![PyPI downloads](https://img.shields.io/pypi/dm/tiktok-live-api)](https://pypi.org/project/tiktok-live-api/)
@@ -13,23 +13,23 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/tiktool/tiktok-live-python/main/tiktok-live-api.gif" alt="TikTok Live API Demo — real-time chat, gifts, and viewer events" width="700">
+  <img src="https://raw.githubusercontent.com/tiktool/tiktok-live-python/main/tiktok-live-api.gif" alt="TikTok Live API Demo - real-time chat, gifts, and viewer events" width="700">
 </p>
 
-> **99.9% uptime** — Never breaks when TikTok updates. No protobuf, no reverse engineering, no maintenance required. Powered by the [TikTool](https://tik.tools) managed WebSocket API.
+> **99.9% uptime** - Never breaks when TikTok updates. No protobuf, no reverse engineering, no maintenance required. Powered by the [TikTool](https://tik.tools) managed WebSocket API.
 
 <table>
 <tr>
     <td><br/><img width="150px" src="https://raw.githubusercontent.com/tiktool/tiktok-live-python/main/.github/logo.png" alt="TikTool Logo"><br/><br/></td>
     <td>
         <a href="https://tik.tools">
-            <strong>TikTool</strong> offers a fully managed TikTok LIVE API — real-time events, AI captions, CAPTCHA solving, and more. Free Community tier (forever). No credit card required.
+            <strong>TikTool</strong> offers a fully managed TikTok LIVE API - real-time events, AI captions, CAPTCHA solving, and more. Free Community tier (forever). No credit card required.
         </a>
     </td>
 </tr>
 </table>
 
-**🎤 Exclusive:** [Real-Time Live Captions](#-live-captions-speech-to-text) — AI-powered speech-to-text with translation & speaker diarization. **No other TikTok library offers this.**
+**🎤 Exclusive:** [Real-Time Live Captions](#-live-captions-speech-to-text) - AI-powered speech-to-text with translation & speaker diarization. **No other TikTok library offers this.**
 
 ## 🚀 One-Command Quick Start
 
@@ -47,7 +47,7 @@ python -m tiktok_live_api
 
 - [Why tiktok-live-api?](#-why-tiktok-live-api)
 - [Getting Started](#-getting-started)
-- [Try It Now — Live Demo](#-try-it-now--live-demo)
+- [Try It Now - Live Demo](#-try-it-now--live-demo)
 - [Events](#-events)
 - [Live Captions (AI STT)](#-live-captions-speech-to-text)
 - [Async Usage](#-async-usage)
@@ -69,7 +69,7 @@ python -m tiktok_live_api
 | **Translation** | ✅ 50+ languages | ❌ Not available | ❌ Not available |
 | **CAPTCHA Solving** | ✅ Built-in (Pro+) | ❌ Manual | ❌ Manual |
 | **Feed Discovery** | ✅ See who's live | ❌ Not available | ❌ Not available |
-| **Maintenance** | ✅ Zero — we handle everything | ❌ You fix breakages | ❌ You fix breakages |
+| **Maintenance** | ✅ Zero - we handle everything | ❌ You fix breakages | ❌ You fix breakages |
 | **Multi-Language** | ✅ Python, Node.js, Java, Go, C# | Python only | Node.js only |
 | **Free Tier** | ✅ 2,500 req/day, 15 WS, 2h per WS | ✅ Free (when it works) | ✅ Free (when it works) |
 
@@ -113,12 +113,12 @@ That's it. **No protobuf, no signing servers, no reverse engineering, no breakag
 
 ---
 
-## 🚀 Try It Now — Live Demo
+## 🚀 Try It Now - Live Demo
 
-Copy-paste, run, see real-time TikTok events in your terminal. Works on the free **Community** tier — 2h per WS, runs as long as the stream is live.
+Copy-paste, run, see real-time TikTok events in your terminal. Works on the free **Community** tier - 2h per WS, runs as long as the stream is live.
 
 ```python
-# demo.py — TikTok LIVE in real time
+# demo.py - TikTok LIVE in real time
 # pip install tiktok-live-api
 from tiktok_live_api import TikTokLive
 
@@ -130,7 +130,7 @@ events = 0
 
 @client.on("connected")
 def on_connected(event):
-    print(f"\n✅ Connected to @{LIVE_USERNAME} — streaming events...\n")
+    print(f"\n✅ Connected to @{LIVE_USERNAME} - streaming events...\n")
 
 @client.on("chat")
 def on_chat(event):
@@ -169,7 +169,7 @@ client.run()
 <summary><strong>🔌 Pure WebSocket version (no SDK)</strong></summary>
 
 ```python
-# ws-demo.py — Pure WebSocket, zero dependencies
+# ws-demo.py - Pure WebSocket, zero dependencies
 # pip install websockets
 import asyncio, websockets, json
 
@@ -180,7 +180,7 @@ async def listen():
     url = f"wss://api.tik.tools?uniqueId={LIVE_USERNAME}&apiKey={API_KEY}"
     events = 0
     async with websockets.connect(url) as ws:
-        print(f"\n✅ Connected to @{LIVE_USERNAME} — streaming events...\n")
+        print(f"\n✅ Connected to @{LIVE_USERNAME} - streaming events...\n")
         async for message in ws:
             msg = json.loads(message)
             events += 1
@@ -215,7 +215,7 @@ asyncio.run(listen())
 | `subscribe` | New subscriber | `user` |
 | `roomUserSeq` | Viewer count update | `viewerCount`, `topViewers` |
 | `battle` | PK start / end / status change | `battleId`, `status` (1=ACTIVE / 2=STARTING / 3=ENDED / 4=PREPARING), `battleDuration`, `teams` |
-| `battleArmies` | Live PK score update | `battleId`, `status`, `matchId`, `sessionId`, `durationSec`, `secsRemaining`, `hosts[]` — each host has `teamTotalScore` + `contributors[]` (MVP first) |
+| `battleArmies` | Live PK score update | `battleId`, `status`, `matchId`, `sessionId`, `durationSec`, `secsRemaining`, `hosts[]` - each host has `teamTotalScore` + `contributors[]` (MVP first) |
 | `battleItemCard` | Booster multipliers, gloves, mist, match-guide, thunder, extra-time | `effect` (`'gloves'` / `'mist'` / `'booster_x2'` / `'booster_x3'` / `'match_guide'` / ...), `multiplier` (2 or 3), `senderUserId`, `senderNickname`, `activatedAtSec`, `durationSec`, `endsAtSec`, `commentTemplate` |
 | `roomPin` | Pinned/starred message | `user`, `comment`, `action`, `durationSeconds` |
 | `envelope` | Treasure chest | `diamonds`, `user` |
@@ -262,7 +262,7 @@ client.connect()
 
 ## 🎤 Live Captions (Speech-to-Text)
 
-Transcribe and translate any TikTok LIVE stream in real-time. **This feature is unique to TikTool — no other TikTok library offers it.**
+Transcribe and translate any TikTok LIVE stream in real-time. **This feature is unique to TikTool - no other TikTok library offers it.**
 
 ```python
 from tiktok_live_api import TikTokCaptions
@@ -343,7 +343,7 @@ def on_chat(event):
     elif msg == "!top":
         top = sorted(gift_leaderboard.items(), key=lambda x: -x[1])[:5]
         for i, (name, diamonds) in enumerate(top):
-            print(f"  {i+1}. {name} — {diamonds} 💎")
+            print(f"  {i+1}. {name} - {diamonds} 💎")
 
 @client.on("gift")
 def on_gift(event):
@@ -398,18 +398,18 @@ client.run()
 | Tier | Requests/Day | WS Connections | WS Duration | Price |
 |------|-------------|----------------|-------------|-------|
 | **Community** | 2,500 | 15 | 2h per WS | **Free forever** |
-| **Pro** | 75,000 | 50 | 8 hours | from $59/mo +tax |
-| **Ultra** | 300,000 | 250 | 8 hours | from $219/mo +tax |
-| **Global Agency** | 300,000 | 500 + Firehose | 8 hours | $549/mo +tax |
+| **Pro** | 75,000 | 50 | 8 hours | from $19/wk +tax |
+| **Ultra** | 300,000 | 250 | 8 hours | from $69/wk +tax |
+| **Global Agency** | 300,000 | 500 + Firehose | 8 hours | $149/wk or $549/mo +tax |
 
 Full plan details at [tik.tools/pricing](https://tik.tools/pricing). Highlights:
 
-- **Community** ($0 forever): 2,500 req/day · 15 WS · 2h per WS · masked leaderboards. Build apps with masked names — upgrade when you need real identities. No datacenter proxies; requests run from your own IP.
-- **Pro** (monthly): 75K req/day · 50 WS · unmasked leaderboards · CAPTCHA Solver · Feed Discovery · 5 AI caption streams · priority routing · chat support
-- **Ultra** (monthly): 300K req/day · 250 WS · 20 AI caption streams · **League Rankings API** unmasked · 99.5% uptime SLA · priority chat support
-- **Global Agency** ($549/mo): Everything in Ultra + **Live Gifter Firehose WS** (region/league/global filters + min-diamond threshold) + VIP Telegram alerts + VIP Web Vault (unmasked historical visual access)
+- **Community** ($0 forever): 2,500 req/day · 15 WS · 2h per WS · masked leaderboards. Build apps with masked names - upgrade when you need real identities. No datacenter proxies; requests run from your own IP.
+- **Pro** ($19/wk): 75K req/day · 50 WS · unmasked leaderboards · Feed Discovery · 5 AI caption streams · priority routing · chat support
+- **Ultra** ($69/wk): 300K req/day · 250 WS · 20 AI caption streams · **League Rankings API** unmasked · 99.5% uptime SLA · priority chat support
+- **Global Agency** ($149/wk or $549/mo): Everything in Ultra + **Live Gifter Firehose WS** (region/league/global filters + min-diamond threshold) + VIP Telegram alerts + VIP Web Vault (unmasked historical visual access)
 
-### Live Gifter Firehose — Global Agency
+### Live Gifter Firehose - Global Agency
 
 Real-time gift event stream from our Dragonfly fan-out. Filter by region, league, or globally; cap by minimum diamond threshold.
 
@@ -430,7 +430,7 @@ async def main():
 asyncio.run(main())
 ```
 
-Modes: `global` (all regions), `region` (single region code), `league` (region + league class, e.g. `B2`). Update the filter mid-stream by sending `{"type":"update_filter","mode":"global","min_diamonds":5000}` — no reconnect needed.
+Modes: `global` (all regions), `region` (single region code), `league` (region + league class, e.g. `B2`). Update the filter mid-stream by sending `{"type":"update_filter","mode":"global","min_diamonds":5000}` - no reconnect needed.
 
 Get your free API key → [tik.tools](https://tik.tools)
 
@@ -438,7 +438,7 @@ Get your free API key → [tik.tools](https://tik.tools)
 
 ## Star History
 
-If this project helps you, please consider giving it a ⭐ — it helps others discover it!
+If this project helps you, please consider giving it a ⭐ - it helps others discover it!
 
 <p align="center">
     <a href="https://github.com/tiktool/tiktok-live-python/stargazers">
@@ -464,6 +464,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Contributors
 
-- **TikTool** — *Creator & Maintainer* — [tik.tools](https://tik.tools)
+- **TikTool** - *Creator & Maintainer* - [tik.tools](https://tik.tools)
 
 See also the full list of [contributors](https://github.com/tiktool/tiktok-live-python/contributors) who have participated in this project.
