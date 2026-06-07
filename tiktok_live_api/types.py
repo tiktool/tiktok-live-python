@@ -31,6 +31,7 @@ __all__ = [
     "RoomPinEvent",
     "CaptionEvent",
     "TranslationEvent",
+    "NativeCaptionEvent",
 ]
 
 
@@ -61,6 +62,14 @@ class ChatEvent(TypedDict, total=False):
     comment: str
     emotes: List[Dict[str, Any]]
     starred: Dict[str, int]  # {"claps": N, "score": N} - present only for starred messages
+    # v3 (2026-06-07): TikTok auto-detected language (ISO 639-1, "un" = unknown)
+    language: str
+    # v3 (2026-06-07): stable per-message UUID used by chat-delete / moderation events
+    messageUuid: str
+    # Proto schema version this event was decoded against (1, 2, or 3).
+    # See https://tik.tools/docs for the migration matrix; v3-only fields are
+    # surfaced only when present so legacy v1/v2 callers can keep ignoring them.
+    protoVersion: int
 
 
 class GiftEvent(TypedDict, total=False):
@@ -72,6 +81,15 @@ class GiftEvent(TypedDict, total=False):
     diamondCount: int
     repeatCount: int
     repeatEnd: bool
+    # v3 (2026-06-07): stable per-gift transaction id (hex string) - dedup key.
+    transactionId: str
+    # v3 (2026-06-07): explicit sender id (mirrors user.id but TikTok ships
+    # it separately on the wire so we surface it for safe comparison).
+    senderUserId: str
+    # v3 (2026-06-07): relationship metadata when TikTok attaches it.
+    # Shape: { joinDayNumber: int, fromUser: str, toUser: str }
+    relationship: Dict[str, Any]
+    protoVersion: int
 
 
 class LikeEvent(TypedDict, total=False):
@@ -87,6 +105,17 @@ class MemberEvent(TypedDict, total=False):
 
     user: TikTokUser
     actionId: int
+    # v3 (2026-06-07): granular subcode (38, 44, ...) finer than actionId.
+    actionCode: int
+    # v3 (2026-06-07): where the viewer came from -
+    # "homepage_hot-live_cell", "follow-tab", ...
+    entrySource: str
+    # v3 (2026-06-07): how the viewer entered -
+    # "draw" (algorithmic surface), "click" (explicit), "other".
+    entryAction: str
+    # v3 (2026-06-07): "rec" when TikTok recommended this stream to the viewer.
+    entryType: str
+    protoVersion: int
 
 
 class SocialEvent(TypedDict, total=False):
@@ -218,3 +247,20 @@ class TranslationEvent(TypedDict, total=False):
     text: str
     sourceLanguage: str
     targetLanguage: str
+
+
+class NativeCaptionEvent(TypedDict, total=False):
+    """Payload for ``caption`` events from :class:`~tiktok_live_api.TikTokLive`.
+
+    v3 (2026-06-07): TikTok now ships native auto-captions directly on the
+    LIVE WebSocket via ``WebcastCaptionMessage``. Each frame carries one
+    caption window with text, start/end timestamps, and an ``isFinal`` flag.
+    Independent of the operator-managed :class:`TikTokCaptions` product -
+    this is what TikTok's own viewer UI renders for accessibility / Discover.
+    """
+
+    text: str
+    isFinal: bool
+    startedAtMs: int
+    endsAtMs: int
+    protoVersion: int
