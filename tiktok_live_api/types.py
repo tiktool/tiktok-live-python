@@ -43,6 +43,15 @@ class TikTokUser(TypedDict, total=False):
     profilePictureUrl: str
     followRole: int
     isSubscriber: bool
+    # TikTok donator / spender level (1 to 50). Present on every user-bearing
+    # event (chat / gift / like / follow / member / share) when the user has
+    # gifted at least once on the platform. Extracted from the proto badge
+    # category 20 sub category 8 priv.level_string. Absent when the user has
+    # never gifted. The wire field name on api.tik.tools is `level`; alias
+    # `payGrade` matches the @tiktool/live JS SDK shape for cross-language
+    # consumers.
+    level: int
+    payGrade: int
 
 
 class ChatEvent(TypedDict, total=False):
@@ -51,7 +60,7 @@ class ChatEvent(TypedDict, total=False):
     user: TikTokUser
     comment: str
     emotes: List[Dict[str, Any]]
-    starred: Dict[str, int]  # {"claps": N, "score": N} — present only for starred messages
+    starred: Dict[str, int]  # {"claps": N, "score": N} - present only for starred messages
 
 
 class GiftEvent(TypedDict, total=False):
@@ -115,7 +124,7 @@ class BattleContributor(TypedDict, total=False):
 
 
 class BattleHost(TypedDict, total=False):
-    """One host on a battle side — multi-guest PK breakdown."""
+    """One host on a battle side - multi-guest PK breakdown."""
 
     hostUserId: str
     teamTotalScore: int
@@ -125,7 +134,7 @@ class BattleHost(TypedDict, total=False):
 
 
 class BattleArmiesEvent(TypedDict, total=False):
-    """Payload for ``battleArmies`` events — score updates during PK."""
+    """Payload for ``battleArmies`` events - score updates during PK."""
 
     battleId: str
     status: int
@@ -144,7 +153,7 @@ class BattleArmiesEvent(TypedDict, total=False):
 
 
 class BattleItemCardEvent(TypedDict, total=False):
-    """Payload for ``battleItemCard`` events — booster multipliers, gloves, mist, etc."""
+    """Payload for ``battleItemCard`` events - booster multipliers, gloves, mist, etc."""
 
     battleId: str
     cardType: int
@@ -165,7 +174,7 @@ class BattleItemCardEvent(TypedDict, total=False):
     iconUrl: str
     """Full TikTok CDN URL for the card art."""
     iconKey: str
-    """Short identifier — ``card_mist_v3``, ``card_crit_v3``, ``top3_buffer``, ..."""
+    """Short identifier - ``card_mist_v3``, ``card_crit_v3``, ``top3_buffer``, ..."""
     accentColor: str
     """Hex accent color (``#BCD9E0`` mist, ``#E0D4BC`` gloves, ...)."""
 

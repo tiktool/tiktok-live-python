@@ -1,4 +1,4 @@
-"""Live Captions example — transcribe and translate a TikTok LIVE stream.
+"""Live Captions example - transcribe and translate a TikTok LIVE stream.
 
 Usage:
     # Set environment variables first:
