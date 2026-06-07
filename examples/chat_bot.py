@@ -1,4 +1,4 @@
-"""Chat bot example — respond to commands and track a gift leaderboard.
+"""Chat bot example - respond to commands and track a gift leaderboard.
 
 Usage:
     # Set environment variables first:

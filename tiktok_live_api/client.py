@@ -1,4 +1,4 @@
-"""TikTokLive client — connect to any TikTok LIVE stream via WebSocket."""
+"""TikTokLive client - connect to any TikTok LIVE stream via WebSocket."""
 # ruff: noqa: E402
 
 from __future__ import annotations

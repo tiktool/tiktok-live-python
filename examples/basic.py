@@ -1,4 +1,4 @@
-"""Basic example — connect to a TikTok LIVE stream and print all events.
+"""Basic example - connect to a TikTok LIVE stream and print all events.
 
 Usage:
     # Set environment variables first:

@@ -1,4 +1,4 @@
-"""TikTokCaptions — Real-time AI speech-to-text for TikTok LIVE streams."""
+"""TikTokCaptions - Real-time AI speech-to-text for TikTok LIVE streams."""
 
 from __future__ import annotations
 

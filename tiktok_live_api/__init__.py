@@ -1,4 +1,4 @@
-"""TikTok Live API — TikTok LIVE stream data client for Python.
+"""TikTok Live API - TikTok LIVE stream data client for Python.
 
 Connect to any TikTok LIVE stream and receive real-time events:
 chat messages, gifts, likes, follows, viewer counts, battles, and more.
@@ -47,4 +47,4 @@ __all__ = [
     "CaptionEvent",
     "TranslationEvent",
 ]
-__version__ = "1.0.1"
+__version__ = "1.4.6"

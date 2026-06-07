@@ -143,7 +143,7 @@ async def async_main():
                 print(f"  {C_GREEN}● live{R}")
                 break
             else:
-                print(f"  {D}—{R}")
+                print(f"  {D}-{R}")
         
         if not ws:
             print(f"\n  {C_RED}No live streams found.{R} Try: {C_CYAN}python -m tiktok_live_api @username{R}\n")
@@ -151,7 +151,7 @@ async def async_main():
             sys.exit(1)
 
     print()
-    print(f"  {C_GREEN}●{R} {B}@{who}{R}  {D}— streaming events. Ctrl+C to stop.{R}")
+    print(f"  {C_GREEN}●{R} {B}@{who}{R}  {D}- streaming events. Ctrl+C to stop.{R}")
     print(f"  {D}{'─' * 50}{R}")
     print()
 
@@ -173,7 +173,7 @@ async def async_main():
     except asyncio.CancelledError:
         pass
     finally:
-        print(f"\n\n  {D}stopped — {B}{count}{R}{D} events received{R}")
+        print(f"\n\n  {D}stopped - {B}{count}{R}{D} events received{R}")
         print(f"  {D}Get unlimited access:{R} {C_CYAN}https://tik.tools{R}\n")
         if ws: await ws.close()
 
