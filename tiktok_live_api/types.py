@@ -46,6 +46,28 @@ __all__ = [
     "ShareRevenueNoticeEvent",
     "ViewerPicksUpdateEvent",
     "FanTicketEvent",
+    # v3 (2026-06-07) - Tier 4 additions
+    "GiftDynamicRestrictionEvent",
+    "InRoomBannerEvent",
+    "BattlePunishFinishEvent",
+    "BattleNoticeEvent",
+    "HostBoardEvent",
+    "PollEvent",
+    "CompetitionEvent",
+    "StreamStatusEvent",
+    "BattleGameplayEvent",
+    "AISummaryEvent",
+    "GiftGalleryEvent",
+    "CohostLayoutUpdateEvent",
+    "FansEventEvent",
+    "LinkScreenChangeEvent",
+    "RoomStickerEvent",
+    "BottomMessageEvent",
+    "OecLiveShoppingEvent",
+    "RankTextEvent",
+    "AccessRecallEvent",
+    "UnauthorizedMemberEvent",
+    "GuestShowdownEvent",
 ]
 
 
@@ -400,4 +422,183 @@ class FanTicketEvent(TypedDict, total=False):
     """Fan-ticket method event (fan-club ticket flow). v3 (2026-06-07)."""
 
     rawPayload: str
+    protoVersion: int
+
+
+# ── v3 Tier 4 (2026-06-07) - 21 lower-volume methods modeled from a
+#    30-minute capture across 1963 rooms / 752,955 frames decoded.
+
+
+class GiftDynamicRestrictionEvent(TypedDict, total=False):
+    """Dynamic gift-catalog restriction flip. v3 (2026-06-07)."""
+
+    rawPayload: str
+    protoVersion: int
+
+
+class InRoomBannerEvent(TypedDict, total=False):
+    """In-room activity banner carrying a JSON descriptor. v3 (2026-06-07)."""
+
+    activityJson: str
+    protoVersion: int
+
+
+class BattlePunishFinishEvent(TypedDict, total=False):
+    """PK punishment phase finished. v3 (2026-06-07)."""
+
+    battleId: str
+    punishedUserId: str
+    punishType: int
+    sessionId: str
+    protoVersion: int
+
+
+class BattleNoticeEvent(TypedDict, total=False):
+    """PK notice (version-mismatch toasts, invite-failure messages). v3 (2026-06-07)."""
+
+    noticeCode: int
+    noticeKey: str
+    noticeText: str
+    protoVersion: int
+
+
+class HostBoardEvent(TypedDict, total=False):
+    """Host leaderboard board update. v3 (2026-06-07)."""
+
+    rawPayload: str
+    protoVersion: int
+
+
+class PollEvent(TypedDict, total=False):
+    """In-stream poll lifecycle. v3 (2026-06-07)."""
+
+    pollId: str
+    action: int
+    status: int
+    questionPayload: str
+    optionsPayload: str
+    protoVersion: int
+
+
+class CompetitionEvent(TypedDict, total=False):
+    """Cross-stream competition event. v3 (2026-06-07)."""
+
+    competitionType: int
+    layoutSubtype: str
+    protoVersion: int
+
+
+class StreamStatusEvent(TypedDict, total=False):
+    """Stream status flip (recording state, content-classification rechecks). v3 (2026-06-07)."""
+
+    rawPayload: str
+    protoVersion: int
+
+
+class BattleGameplayEvent(TypedDict, total=False):
+    """PK mini-game gameplay state. v3 (2026-06-07)."""
+
+    gameplayId: str
+    gameplayType: int
+    subType: int
+    protoVersion: int
+
+
+class AISummaryEvent(TypedDict, total=False):
+    """TikTok AI summary of the room. v3 (2026-06-07)."""
+
+    summary: str
+    scenarioKey: str
+    iconUrl: str
+    labelKey: str
+    displayDurationMs: int
+    protoVersion: int
+
+
+class GiftGalleryEvent(TypedDict, total=False):
+    """Host-side gift wall snapshot. v3 (2026-06-07)."""
+
+    transactionId: str
+    protoVersion: int
+
+
+class CohostLayoutUpdateEvent(TypedDict, total=False):
+    """Cohost layout subtype change. v3 (2026-06-07)."""
+
+    layoutSubtype: str
+    protoVersion: int
+
+
+class FansEventEvent(TypedDict, total=False):
+    """Fan-club event (tier-up, community refresh). v3 (2026-06-07)."""
+
+    fanType: int
+    eventKey: str
+    protoVersion: int
+
+
+class LinkScreenChangeEvent(TypedDict, total=False):
+    """PK split-screen layout flip. v3 (2026-06-07)."""
+
+    changeType: int
+    sessionInfo: str
+    protoVersion: int
+
+
+class RoomStickerEvent(TypedDict, total=False):
+    """Room-wide sticker drop. v3 (2026-06-07)."""
+
+    stickerPayload: str
+    protoVersion: int
+
+
+class BottomMessageEvent(TypedDict, total=False):
+    """Bottom-bar safety / risk notice. v3 (2026-06-07)."""
+
+    noticeKey: str
+    anchorUserId: str
+    durationSec: int
+    riskKey: str
+    protoVersion: int
+
+
+class OecLiveShoppingEvent(TypedDict, total=False):
+    """OEC live-shopping event (product card display / hide). v3 (2026-06-07)."""
+
+    status: int
+    productInfo: str
+    protoVersion: int
+
+
+class RankTextEvent(TypedDict, total=False):
+    """Rank text update (top-viewer announcement template). v3 (2026-06-07)."""
+
+    templateKey: str
+    userId: str
+    protoVersion: int
+
+
+class AccessRecallEvent(TypedDict, total=False):
+    """Access recall (content classification recheck pulls a permission). v3 (2026-06-07)."""
+
+    status: int
+    reason: str
+    durationSec: int
+    suspendKey: str
+    protoVersion: int
+
+
+class UnauthorizedMemberEvent(TypedDict, total=False):
+    """Unauthorized member notice (non-logged-in viewer hit a gated feature). v3 (2026-06-07)."""
+
+    templateKey: str
+    countLabel: str
+    enterToastKey: str
+    protoVersion: int
+
+
+class GuestShowdownEvent(TypedDict, total=False):
+    """Guest showdown lifecycle. v3 (2026-06-07)."""
+
+    showdownType: int
     protoVersion: int
