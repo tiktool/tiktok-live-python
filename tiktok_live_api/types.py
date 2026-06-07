@@ -32,6 +32,20 @@ __all__ = [
     "CaptionEvent",
     "TranslationEvent",
     "NativeCaptionEvent",
+    # v3 (2026-06-07) - Tier 2 / Tier 3 additions
+    "LinkMicOpponentGiftEvent",
+    "ImDeleteEvent",
+    "GoalUpdateEvent",
+    "PrivilegeAdvanceEvent",
+    "CommentTrayEvent",
+    "LinkLayerEvent",
+    "LinkMessageEvent",
+    "GiftPanelUpdateEvent",
+    "GameServerFeatureEvent",
+    "AnchorToolModificationEvent",
+    "ShareRevenueNoticeEvent",
+    "ViewerPicksUpdateEvent",
+    "FanTicketEvent",
 ]
 
 
@@ -142,6 +156,12 @@ class BattleEvent(TypedDict, total=False):
     battleDuration: int
     teams: List[Dict[str, Any]]
     scores: List[int]
+    # v3 (2026-06-07): additional host user IDs surfaced on multi-guest
+    # battles (host pairs beyond the primary two).
+    extraHostUserIds: List[str]
+    # v3 (2026-06-07): TikTok layout subtype ("cohost_normal_expand_2", ...)
+    layoutSubtype: str
+    protoVersion: int
 
 
 class BattleContributor(TypedDict, total=False):
@@ -177,8 +197,11 @@ class BattleArmiesEvent(TypedDict, total=False):
     sessionTag: str
     durationSec: int
     secsRemaining: int
-    """Countdown: duration − (serverTs − startedAt)."""
+    """Countdown: duration - (serverTs - startedAt)."""
     hosts: List[BattleHost]
+    # v3 (2026-06-07): stable per-frame transaction UUID (hex). Dedup key.
+    transactionId: str
+    protoVersion: int
 
 
 class BattleItemCardEvent(TypedDict, total=False):
@@ -263,4 +286,118 @@ class NativeCaptionEvent(TypedDict, total=False):
     isFinal: bool
     startedAtMs: int
     endsAtMs: int
+    protoVersion: int
+
+
+# ── v3 (2026-06-07) Tier 2 / Tier 3 additions ────────────────────────
+
+
+class LinkMicOpponentGiftEvent(TypedDict, total=False):
+    """Per-gift breakdown from the OPPONENT side of a PK. v3 (2026-06-07)."""
+
+    senderUserId: str
+    opponentRoomId: str
+    giftId: int
+    giftPictureUrl: str
+    startedAtMs: int
+    endsAtMs: int
+    transactionId: str
+    protoVersion: int
+
+
+class ImDeleteEvent(TypedDict, total=False):
+    """Chat moderation delete. Correlate via ChatEvent.messageUuid. v3 (2026-06-07)."""
+
+    deletedMsgId: str
+    protoVersion: int
+
+
+class GoalUpdateEvent(TypedDict, total=False):
+    """Stream goal progress (subscriber / gift / watch-time goals). v3 (2026-06-07)."""
+
+    goalKey: str
+    creatorUserId: str
+    contributionLevel: int
+    metadataJson: str
+    protoVersion: int
+
+
+class PrivilegeAdvanceEvent(TypedDict, total=False):
+    """Viewer privilege tier-up notification with overlay assets. v3 (2026-06-07)."""
+
+    privilegeKey: str
+    action: str
+    bgUrls: List[str]
+    protoVersion: int
+
+
+class CommentTrayEvent(TypedDict, total=False):
+    """Comment tray state change. v3 (2026-06-07)."""
+
+    trayCount: int
+    updatedAtMs: int
+    relatedMsgId: str
+    protoVersion: int
+
+
+class LinkLayerEvent(TypedDict, total=False):
+    """PK / link-mic negotiation event. v3 (2026-06-07)."""
+
+    action: int
+    subAction: int
+    sourceType: str
+    targetUserId: str
+    protoVersion: int
+
+
+class LinkMessageEvent(TypedDict, total=False):
+    """Generic link-mic envelope. v3 (2026-06-07)."""
+
+    action: int
+    subAction: int
+    relatedUser: TikTokUser
+    protoVersion: int
+
+
+class GiftPanelUpdateEvent(TypedDict, total=False):
+    """Real-time gift catalog change for the room. v3 (2026-06-07)."""
+
+    panelId: str
+    updatedAtSec: int
+    protoVersion: int
+
+
+class GameServerFeatureEvent(TypedDict, total=False):
+    """TikTok Gaming live integration descriptor. v3 (2026-06-07)."""
+
+    rawTag: str
+    protoVersion: int
+
+
+class AnchorToolModificationEvent(TypedDict, total=False):
+    """Creator modified a panel / widget on their stream. v3 (2026-06-07)."""
+
+    toolPayload: str
+    protoVersion: int
+
+
+class ShareRevenueNoticeEvent(TypedDict, total=False):
+    """Share-revenue subscriber count change notice. v3 (2026-06-07)."""
+
+    creatorUserId: str
+    protoVersion: int
+
+
+class ViewerPicksUpdateEvent(TypedDict, total=False):
+    """Viewer-picks gift highlights. v3 (2026-06-07)."""
+
+    pickType: int
+    payload: str
+    protoVersion: int
+
+
+class FanTicketEvent(TypedDict, total=False):
+    """Fan-ticket method event (fan-club ticket flow). v3 (2026-06-07)."""
+
+    rawPayload: str
     protoVersion: int
