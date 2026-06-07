@@ -68,6 +68,27 @@ __all__ = [
     "AccessRecallEvent",
     "UnauthorizedMemberEvent",
     "GuestShowdownEvent",
+    # v3 (2026-06-07) - Tier 5 (long-tail rare methods)
+    "HotRoomEvent",
+    "EnvelopePortalEvent",
+    "GroupLiveMemberNotifyEvent",
+    "ShortTouchEvent",
+    "LinkMicAnchorGuideEvent",
+    "GameMomentEvent",
+    "CompetitionContributorEvent",
+    "PictionaryUpdateEvent",
+    "PictionaryEndEvent",
+    "PictionaryExitEvent",
+    "OecLiveManagerEvent",
+    "OecLiveBillboardEvent",
+    "PerceptionEvent",
+    "QuestionSelectedEvent",
+    "QuestionSlideDownEvent",
+    "GiftUnlockEvent",
+    "EcShortItemRefreshEvent",
+    "CapsuleEvent",
+    "RoomVerifyEvent",
+    "SMBBoardEvent",
 ]
 
 
@@ -601,4 +622,176 @@ class GuestShowdownEvent(TypedDict, total=False):
     """Guest showdown lifecycle. v3 (2026-06-07)."""
 
     showdownType: int
+    protoVersion: int
+
+
+# ── v3 Tier 5 (2026-06-07) - long-tail rare methods.
+
+
+class HotRoomEvent(TypedDict, total=False):
+    """Hot-room flag (TikTok promoted the room to a high-traffic slot). v3."""
+
+    hotKey: str
+    protoVersion: int
+
+
+class EnvelopePortalEvent(TypedDict, total=False):
+    """Red-envelope portal advance (multi-room envelope chain). v3."""
+
+    sessionInfo: str
+    status: int
+    kind: int
+    level: int
+    protoVersion: int
+
+
+class GroupLiveMemberNotifyEvent(TypedDict, total=False):
+    """Group-live member join / leave notify. v3."""
+
+    userId: str
+    nickname: str
+    protoVersion: int
+
+
+class ShortTouchEvent(TypedDict, total=False):
+    """Short-touch UI (poll, ecommerce lucky bag) state change. v3."""
+
+    variant: str
+    action: str
+    refId: str
+    protoVersion: int
+
+
+class LinkMicAnchorGuideEvent(TypedDict, total=False):
+    """Anchor guide nudges (TikTok prompts the host with a tip). v3."""
+
+    guideCode: int
+    rawPayload: str
+    protoVersion: int
+
+
+class GameMomentEvent(TypedDict, total=False):
+    """PK / mini-game moment window (highlight clip start / end). v3."""
+
+    momentType: int
+    startedAtMs: int
+    endsAtMs: int
+    momentMsgId: str
+    protoVersion: int
+
+
+class CompetitionContributorEvent(TypedDict, total=False):
+    """Per-contributor breakdown inside a cross-stream competition. v3."""
+
+    competitionType: int
+    contributorUserId: str
+    receiverUserId: str
+    protoVersion: int
+
+
+class PictionaryUpdateEvent(TypedDict, total=False):
+    """Drawing-game (Pictionary) round update. v3."""
+
+    status: int
+    pictionaryId: str
+    protoVersion: int
+
+
+class PictionaryEndEvent(TypedDict, total=False):
+    """Drawing-game round end with revealed answer. v3."""
+
+    pictionaryId: str
+    answer: str
+    status: int
+    protoVersion: int
+
+
+class PictionaryExitEvent(TypedDict, total=False):
+    """Drawing-game exit. v3."""
+
+    pictionaryId: str
+    exitReason: int
+    protoVersion: int
+
+
+class OecLiveManagerEvent(TypedDict, total=False):
+    """OEC live-manager event (manager assigned / unassigned). v3."""
+
+    status: int
+    managerNickname: str
+    protoVersion: int
+
+
+class OecLiveBillboardEvent(TypedDict, total=False):
+    """OEC live billboard slot (product wall snapshot). v3."""
+
+    status: int
+    slotCount: int
+    updatedAtMs: int
+    productPayload: str
+    flagsPayload: List[str]
+    protoVersion: int
+
+
+class PerceptionEvent(TypedDict, total=False):
+    """Perception event (mute cancel etc, TikTok hint signal). v3."""
+
+    perceptionCode: int
+    action: str
+    protoVersion: int
+
+
+class QuestionSelectedEvent(TypedDict, total=False):
+    """Host picked a viewer-submitted question. v3."""
+
+    questionText: str
+    protoVersion: int
+
+
+class QuestionSlideDownEvent(TypedDict, total=False):
+    """Selected-question card slid down (UI dismiss). v3."""
+
+    questionId: str
+    protoVersion: int
+
+
+class GiftUnlockEvent(TypedDict, total=False):
+    """Gift-unlock reveal (host unlocked a gated gift). v3."""
+
+    iconUrl: str
+    tooltipKey: str
+    protoVersion: int
+
+
+class EcShortItemRefreshEvent(TypedDict, total=False):
+    """Short-touch ecommerce item refresh (lucky bag drop refreshed). v3."""
+
+    refreshToken: str
+    protoVersion: int
+
+
+class CapsuleEvent(TypedDict, total=False):
+    """Capsule overlay (TikTok service-plus pin reminder). v3."""
+
+    imageUrl: str
+    titleKey: str
+    btnKey: str
+    deepLink: str
+    reminderKey: str
+    displayDurationSec: int
+    protoVersion: int
+
+
+class RoomVerifyEvent(TypedDict, total=False):
+    """Room age / content classification verification event. v3."""
+
+    verifyCode: int
+    protoVersion: int
+
+
+class SMBBoardEvent(TypedDict, total=False):
+    """SMB (small-business) board overlay. v3."""
+
+    boardPayload: str
+    status: int
     protoVersion: int
