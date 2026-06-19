@@ -20,6 +20,7 @@ See https://tik.tools/docs for full documentation.
 
 from tiktok_live_api.client import TikTokLive
 from tiktok_live_api.captions import TikTokCaptions
+from tiktok_live_api.rest import TikTool, TikToolError
 from tiktok_live_api.types import (
     TikTokUser,
     ChatEvent,
@@ -36,6 +37,8 @@ from tiktok_live_api.types import (
 __all__ = [
     "TikTokLive",
     "TikTokCaptions",
+    "TikTool",
+    "TikToolError",
     "TikTokUser",
     "ChatEvent",
     "GiftEvent",
@@ -47,4 +50,4 @@ __all__ = [
     "CaptionEvent",
     "TranslationEvent",
 ]
-__version__ = "1.8.0"
+__version__ = "1.8.1"
