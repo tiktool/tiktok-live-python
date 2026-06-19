@@ -1,4 +1,12 @@
 <p align="center">
+  <a href="https://discord.com/oauth2/authorize?client_id=1482386543233597470">
+    <img src="https://img.shields.io/badge/Add%20TikTool%20Bot%20to%20Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Add TikTool Bot to Discord" height="46">
+  </a>
+</p>
+
+Agency rank feeds in Discord: gaming ranks, creator ranks and 99+ movers across all 30 regions, copy-paste usernames for backstage. /ranks to start (Global Agency).
+
+<p align="center">
   <img src="https://raw.githubusercontent.com/tiktool/tiktok-live-python/main/banner.png" alt="tiktok-live-api Python" width="100%" />
 </p>
 
@@ -477,25 +485,75 @@ client.run()
 
 ---
 
-## 💰 Pricing
+## Pricing (USD)
+| Tier | Weekly | Monthly |
+|------|--------|---------|
+| Sandbox / Free | $0 | $0 |
+| Basic | $7 | $19 |
+| Pro | $15 | $49 |
+| Ultra | $45 | $149 |
+| Global Agency | $119 | $399 |
 
-Tier is enforced server-side by your API key. Snapshot below; the full feature matrix lives at [tik.tools/pricing](https://tik.tools/pricing).
+Full pricing + checkout: https://tik.tools/pricing
 
-| Tier | Weekly | Monthly | Req/min | Req/day | Concurrent WS | WS max duration | Bulk check |
-|---|---|---|---|---|---|---|---|
-| Community | free | free | 5 (300/h) | 2,500 | 1 | 2h | - |
-| Basic | $7 | $19 | 60 | 10,000 | 20 | 8h | 10/req |
-| Pro | $15 | $39 | 300 | 75,000 | 50 | 12h | 50/req |
-| Ultra | $45 | $149 | 1,000 | 300,000 | 250 | 24h | 100/req |
-| **Global Agency** | $119 | $399 | 5,000 | 1,000,000 | 500 | 24h | 200/req |
+## Tiers
+Tier ladder (each includes everything below it): Sandbox -> Basic -> Pro -> Ultra -> Global Agency. Sandbox is free with reduced rate limits + masked identifiers on intelligence endpoints; paid tiers raise limits and unmask data. Outgoing webhooks need Basic+. The agency intelligence endpoints (gaming ranks, movers, eligible-creator finder, gifter intel) need Global Agency.
 
-- **Community** ($0 forever): 1 concurrent WS, 2h per session, masked leaderboards. Build apps with masked names - upgrade when you need real identities. No datacenter proxies; requests run from your own IP.
-- **Basic** ($7/wk - $19/mo): 60 req/min, 20 concurrent WS, 8h per WS, datacenter proxies, **12h/wk - 60h/mo of bundled AI Live Captions**.
-- **Pro** ($15/wk - $39/mo): 300 req/min, 50 concurrent WS, 12h per WS, **unmasked leaderboards**, Feed Discovery, regional leaderboard signed URLs, **30h/wk - 140h/mo of bundled AI Live Captions**.
-- **Ultra** ($45/wk - $149/mo): 1,000 req/min, 250 concurrent WS, 24h per WS, **Gift Catalog API** (full TikTok gift catalog continuously re-synced), **League Rankings unmasked**, CSV exports, 99.5% uptime SLA, **60h/wk - 260h/mo of bundled AI Live Captions**.
-- **Global Agency** ($119/wk - $399/mo): Everything in Ultra plus **Live Gifter Firehose WS** (region / league / global filters + min-diamond threshold), VIP Telegram alerts, VIP Web Vault (unmasked historical visual access), **gifter intel unmasked**, 500 concurrent WS, **120h/wk - 500h/mo of bundled AI Live Captions**.
+## Endpoints and required tier
+| Endpoint | Min tier |
+|---|---|
+| POST /webcast/sign_url | Sandbox |
+| POST /webcast/sign_websocket | Sandbox |
+| GET /webcast/ws_credentials | Sandbox |
+| GET /webcast/fetch | Sandbox |
+| GET /webcast/room_id | Sandbox |
+| GET /webcast/room_info | Sandbox |
+| GET /webcast/room_video | Sandbox |
+| GET /webcast/room_cover | Sandbox |
+| GET /webcast/check_alive | Sandbox |
+| POST /webcast/bulk_live_check | Sandbox |
+| GET /webcast/live_status | Sandbox |
+| GET /webcast/live-counts | Sandbox |
+| POST /webcast/resolve_user_ids | Sandbox |
+| GET /webcast/rankings | Sandbox |
+| GET /webcast/leaderboard | Sandbox |
+| GET /webcast/leaderboard/league | Sandbox |
+| GET /webcast/leaderboard/leagues | Sandbox |
+| GET /webcast/gift_info | Sandbox |
+| GET /webcast/gift_gallery | Sandbox |
+| GET /webcast/hashtag_list | Sandbox |
+| GET /webcast/user_earnings | Sandbox |
+| GET /webcast/live_analytics/video_list | Sandbox |
+| GET /webcast/live_analytics/video_detail | Sandbox |
+| GET /webcast/live_analytics/user_interactions | Sandbox |
+| GET /webcast/rate_limits | Sandbox |
+| POST /authentication/jwt | Sandbox |
+| GET /api/live/connect | Sandbox |
+| POST /chat-send | Basic |
+| GET/POST /api/webhooks | Basic |
+| POST /api/webhooks/{id}/test | Basic |
+| GET /ws/sweep | Basic |
+| GET /webcast/feed | Pro |
+| POST /webcast/ranklist/regional | Pro |
+| GET /webcast/user_profile | Pro |
+| GET /api/leaderboards/country/:slug | Pro |
+| GET /webcast/gifts_by_country | Ultra |
+| GET /api/leaderboards/leagues/:region | Ultra |
+| GET /api/leaderboards/league/:region/:classType | Ultra |
+| GET /webcast/ranklist/gaming | Global Agency |
+| GET /webcast/ranklist/gaming_movers | Global Agency |
+| GET /webcast/ranklist/region_movers | Global Agency |
+| GET /webcast/eligible_creators | Global Agency |
+| GET /api/gifters/top | Global Agency |
+| GET /api/gifters/leaderboard | Global Agency |
+| GET /api/gifters/profile | Global Agency |
 
-Standalone AI Live Captions plans (no API key needed) on [tik.tools/captions](https://tik.tools/captions): Casual ($7/wk - $29/mo for 12h/wk - 60h/mo), Pro ($15/wk - $59/mo for 30h/wk - 140h/mo), Extreme ($29/wk - $99/mo for 60h/wk - 260h/mo). Auto-renew + early-renewal on exhaust so captions never drop mid-stream.
+Full docs with request/response shapes and examples: https://tik.tools/docs
+
+## What you get
+**Creators**: real-time live events (gifts, chat, viewers), your own live status + room info, earnings + analytics, signed CDN/stream URLs that do not expire.
+**Developers**: drop-in signing (works as a tiktok-live-connector backend - point the sign base at api.tik.tools), one-WebSocket fan-out (your IP never touches TikTok), bulk live checks, leaderboards, webhooks (HMAC-signed live.start/live.end and more), SDKs across languages.
+**Agencies (Global Agency)**: TikTok LIVE gaming ranks + creator ranks + 99+ movers across all 30 regions, eligible-creator recruiting finder, gifter intelligence (top gifters, profiles, leaderboards), and the Discord bot that posts copy-paste username batches for backstage.
 
 ### Live Gifter Firehose - Global Agency
 
