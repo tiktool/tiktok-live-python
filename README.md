@@ -210,6 +210,54 @@ asyncio.run(listen())
 
 ---
 
+## REST API - leaderboards, recruiting, profiles, gifts
+
+The WebSocket client streams live events. For everything else - leaderboards,
+gaming ranks, recruiting, live status, gift catalogs, profiles - use the
+`TikTool` REST client. Async, one method per endpoint, no extra dependencies.
+
+```python
+import asyncio
+from tiktok_live_api import TikTool, TikToolError
+
+async def main():
+    api = TikTool(api_key="YOUR_KEY")
+
+    # Live status (single + bulk)
+    await api.live_status("charlidamelio")
+    await api.bulk_live_check(["user1", "user2", "user3"])
+
+    # Leaderboards + rankings
+    await api.leaderboard(region="US+")
+    await api.ranklist_gaming("US+")
+    await api.region_movers("US+")            # entered top today, below cutoff now
+
+    # Recruiting (Global Agency) - find eligible creators
+    recruits = await api.eligible_creators(region="US+", limit=50, min_score=1000)
+
+    # Profiles + gifts
+    await api.profile_info("khaby.lame")
+    await api.gifts_by_country("US")
+
+asyncio.run(main())
+```
+
+Tier gating is enforced server-side: a call above your tier raises
+`TikToolError` with `.status == 403`. Any endpoint not yet wrapped is reachable
+via `await api.request("/webcast/...", query={...})`.
+
+```python
+try:
+    await api.eligible_creators(region="US+")
+except TikToolError as e:
+    if e.status == 403:
+        print("Upgrade required:", e)
+```
+
+See [the full endpoint + tier matrix](https://tik.tools/docs).
+
+---
+
 ## 📋 Events (54 v3 event types)
 
 Every event is dispatched by name. Each event payload extends the `BaseEvent` shape (`type`, `timestamp`, `msgId`, optional `protoVersion: 1 | 2 | 3`).
