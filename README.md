@@ -79,7 +79,7 @@ python -m tiktok_live_api
 | **Feed Discovery** | ✅ See who's live | ❌ Not available | ❌ Not available |
 | **Maintenance** | ✅ Zero - we handle everything | ❌ You fix breakages | ❌ You fix breakages |
 | **Multi-Language** | ✅ Python, Node.js, Java, Go, C# | Python only | Node.js only |
-| **Free Tier** | ✅ 2,500 req/day, 15 WS, 2h per WS | ✅ Free (when it works) | ✅ Free (when it works) |
+| **Free Tier** | ✅ 5,000 req/day, 50 WS, 3 concurrent, 2h per WS | ✅ Free (when it works) | ✅ Free (when it works) |
 
 ---
 
