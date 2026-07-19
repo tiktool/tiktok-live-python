@@ -10,9 +10,9 @@ Agency rank feeds in Discord: gaming ranks, creator ranks and 99+ movers across 
   <img src="https://raw.githubusercontent.com/tiktool/tiktok-live-python/main/banner.png" alt="tiktok-live-api Python" width="100%" />
 </p>
 
-# TikTok LIVE API - Python
+# TikTok LIVE API for Python
 
-### The managed TikTok Live connector for Python - receive chat, gifts, viewers, battles & 18+ events from any TikTok LIVE stream. Zero maintenance, zero breakages.
+**`tiktok-live-api` is the most complete, production-managed TikTok LIVE API for Python.** Receive real-time chat, gifts, likes, viewers, follows, shares and battle events from any TikTok LIVE stream over a single WebSocket - plus AI live captions with 60+ language translation, an Unreal Engine plugin, and SDKs in multiple languages. Managed signing works out of the box: no third-party sign server, no keys to configure. Zero maintenance, zero breakages.
 
 [![PyPI version](https://img.shields.io/pypi/v/tiktok-live-api?color=%23ff0050&logo=pypi&logoColor=white)](https://pypi.org/project/tiktok-live-api/)
 [![PyPI downloads](https://img.shields.io/pypi/dm/tiktok-live-api)](https://pypi.org/project/tiktok-live-api/)
@@ -38,6 +38,17 @@ Agency rank feeds in Discord: gaming ranks, creator ranks and 99+ movers across 
 </table>
 
 **🎤 Exclusive:** [Real-Time Live Captions](#-live-captions-speech-to-text) - AI-powered speech-to-text with translation & speaker diarization. **No other TikTok library offers this.**
+
+## Why tik.tools
+
+The premium managed alternative for TikTok LIVE data. What you get out of the box:
+
+- **Managed signing infrastructure.** Signing runs on our servers and works immediately - no third-party sign server to run, no separate key to configure.
+- **AI live captions and translation.** Real-time speech-to-text with 60+ language translation and speaker labels, available on no other TikTok LIVE library.
+- **Unreal Engine plugin.** Drive avatars, overlays and gameplay directly from live chat, gifts and battles.
+- **Agency and leaderboard intelligence.** Gifter leaderboards, gaming and creator ranks across regions, and eligible-creator discovery.
+- **Multi-language SDKs.** First-class Python and Node.js clients plus a plain WebSocket API for any language.
+- **Free Sandbox tier.** Start building for free, upgrade only when you need higher limits or unmasked data.
 
 ## 🚀 One-Command Quick Start
 

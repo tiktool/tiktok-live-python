@@ -4,8 +4,8 @@ build-backend = "hatchling.build"
 
 [project]
 name = "tiktok-live-api"
-version = "1.8.2"
-description = "Unofficial TikTok LIVE API Client - Real-time chat, gifts, viewers, battles, and live captions from any TikTok livestream via the TikTool managed API."
+version = "1.8.3"
+description = "TikTok LIVE API for Python: real-time WebSocket chat, gifts, likes, viewers and battles, plus AI live captions and 60+ language translation. Managed signing, no sign server. Async and typed."
 readme = "README.md"
 license = {text = "MIT"}
 requires-python = ">=3.8"
@@ -14,37 +14,43 @@ authors = [
 ]
 keywords = [
     "tiktok",
-    "tiktok-leaderboard",
-    "tiktok-leaderboards",
-    "tiktok-leagues",
-    "tiktok-rankings",
-    "tiktok-gaming-ranks",
-    "tiktok-creator-recruiting",
-    "tiktok-live-overlay",
-    "tiktok-overlay",
-    "tiktok-live-app",
-    "tiktok-agency",
     "tiktok-live",
     "tiktok-api",
     "tiktok-live-api",
     "tiktok-live-connector",
-    "live-streaming",
-    "websocket",
-    "chat",
-    "gifts",
+    "tiktok-live-sdk",
+    "tiktok-live-python",
+    "tiktok-websocket",
+    "tiktok-chat",
+    "tiktok-gifts",
+    "tiktok-bot",
+    "tiktok-events",
+    "tiktok-data",
+    "tiktok-stream",
+    "tiktok-scraper",
+    "tiktok-agency",
+    "tiktok-overlay",
+    "tiktok-live-overlay",
+    "tiktok-leaderboard",
+    "tiktok-rankings",
+    "tiktok-gaming-ranks",
+    "tiktok-creator-recruiting",
     "webcast",
+    "websocket",
     "real-time",
-    "speech-to-text",
+    "live-streaming",
+    "live-chat",
+    "ai-captions",
+    "live-captions",
     "captions",
     "transcription",
     "translation",
-    "tiktok-data",
-    "tiktok-bot",
-    "live-chat",
-    "tiktok-live-python",
-    "tiktok-tools",
+    "speech-to-text",
+    "unreal-engine",
+    "agency",
+    "leaderboard",
     "euler-stream",
-    "tiktok-live-sdk"
+    "tiktok-tools"
 ]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
