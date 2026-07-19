@@ -22,6 +22,14 @@ AnyHandler = Union[EventHandler, AsyncEventHandler]
 WS_BASE = "wss://api.tik.tools"
 _VERSION = "1.0.1"
 
+# Terminal server close codes: creator not live / stream ended. These are not
+# transient drops, so reconnecting on a tight exponential backoff just burns the
+# sandbox connects-per-hour budget on a room that is still offline. Wait on a
+# long fixed backoff instead so the client can pick the stream up once it starts.
+_NOT_LIVE_CODE = 4404
+_STREAM_END_CODE = 4005
+_TERMINAL_BACKOFF = 60
+
 
 class TikTokLive:
     """Connect to a TikTok LIVE stream and receive real-time events.
@@ -176,7 +184,10 @@ class TikTokLive:
             self._emit("error", {"error": str(exc)})
         finally:
             self._connected = False
-            self._emit("disconnected", {"uniqueId": self.unique_id})
+            close_code = self._ws.close_code if self._ws is not None else None
+            self._emit(
+                "disconnected", {"uniqueId": self.unique_id, "code": close_code}
+            )
 
             if (
                 not self._intentional_close
@@ -184,13 +195,29 @@ class TikTokLive:
                 and self._reconnect_attempts < self.max_reconnect_attempts
             ):
                 self._reconnect_attempts += 1
-                delay = min(2 ** (self._reconnect_attempts - 1), 30)
-                logger.info(
-                    "Reconnecting in %ds (attempt %d/%d)...",
-                    delay,
-                    self._reconnect_attempts,
-                    self.max_reconnect_attempts,
-                )
+                if close_code in (_NOT_LIVE_CODE, _STREAM_END_CODE):
+                    delay = _TERMINAL_BACKOFF
+                    state = (
+                        "not live yet"
+                        if close_code == _NOT_LIVE_CODE
+                        else "stream ended"
+                    )
+                    logger.info(
+                        "@%s %s - waiting %ds before reconnect (attempt %d/%d)...",
+                        self.unique_id,
+                        state,
+                        delay,
+                        self._reconnect_attempts,
+                        self.max_reconnect_attempts,
+                    )
+                else:
+                    delay = min(2 ** (self._reconnect_attempts - 1), 30)
+                    logger.info(
+                        "Reconnecting in %ds (attempt %d/%d)...",
+                        delay,
+                        self._reconnect_attempts,
+                        self.max_reconnect_attempts,
+                    )
                 await asyncio.sleep(delay)
                 await self.connect()
 

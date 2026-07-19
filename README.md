@@ -79,7 +79,7 @@ python -m tiktok_live_api
 | **Feed Discovery** | ✅ See who's live | ❌ Not available | ❌ Not available |
 | **Maintenance** | ✅ Zero - we handle everything | ❌ You fix breakages | ❌ You fix breakages |
 | **Multi-Language** | ✅ Python, Node.js, Java, Go, C# | Python only | Node.js only |
-| **Free Tier** | ✅ 5,000 req/day, 50 WS, 3 concurrent, 2h per WS | ✅ Free (when it works) | ✅ Free (when it works) |
+| **Free Tier** | ✅ 5,000 req/day, 3 concurrent WS, 60 connects/hr, 2h per WS | ✅ Free (when it works) | ✅ Free (when it works) |
 
 ---
 
@@ -533,19 +533,28 @@ client.run()
 
 ---
 
-## Pricing (USD)
-| Tier | Weekly | Monthly |
-|------|--------|---------|
-| Sandbox / Free | $0 | $0 |
-| Basic | $7 | $19 |
-| Pro | $15 | $49 |
-| Ultra | $45 | $149 |
-| Global Agency | $119 | $399 |
+## Pricing and limits (USD)
+
+| Tier | Weekly | Monthly | Requests / day | Concurrent WS | Connects / hour |
+|------|--------|---------|----------------|---------------|-----------------|
+| Sandbox / Community | Free | Free | 5,000 | 3 | 60 |
+| Basic | $7 | $19 | 10,000 | 20 | Unlimited |
+| Pro | $15 | $49 | 75,000 | 50 | Unlimited |
+| Ultra | $45 | $149 | 300,000 | 250 | Unlimited |
+| Global Agency | $119 | $399 | 1,000,000 | 500 | Unlimited |
 
 Full pricing + checkout: https://tik.tools/pricing
 
 ## Tiers
 Tier ladder (each includes everything below it): Sandbox -> Basic -> Pro -> Ultra -> Global Agency. Sandbox is free with reduced rate limits + masked identifiers on intelligence endpoints; paid tiers raise limits and unmask data. Outgoing webhooks need Basic+. The agency intelligence endpoints (gaming ranks, movers, eligible-creator finder, gifter intel) need Global Agency.
+
+| Tier | Headline features |
+|------|-------------------|
+| Sandbox / Community | All core webcast + signing endpoints, real-time WS events (chat, gifts, viewers, battles, 18+ types), masked identifiers on intelligence endpoints. Development + evaluation only. |
+| Basic | Everything in Sandbox, plus outgoing webhooks and chat send. Higher rate limits and more concurrent WS. |
+| Pro | Full unmasked Leaderboard API, Feed Discovery, user profiles, built-in CAPTCHA solving, priority chat. |
+| Ultra | Everything in Pro, plus Gift Catalog, unmasked League Rankings, and peak-viewer / high-value-gift webhook events. |
+| Global Agency | Everything in Ultra, plus Gaming Ranks (all regions), Live Gifter Firehose WS, unmasked Gifter Leaderboard, CRM + watchlist, follower-milestone webhooks, and IP allowlist. |
 
 ## Endpoints and required tier
 | Endpoint | Min tier |

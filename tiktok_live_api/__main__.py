@@ -12,6 +12,13 @@ except ImportError:
 WS_BASE = "wss://api.tik.tools"
 DEMO_KEY = "demo_tiktokliveapi_public_2026"
 
+# Server-announced WS close codes. 4404 = creator not live (terminal),
+# 4005 = stream ended (terminal). 4429/4555 = quota / rate-limit closes,
+# the only cases where an upgrade hint is warranted.
+CODE_NOT_LIVE = 4404
+CODE_STREAM_END = 4005
+LIMIT_CODES = (4429, 4555)
+
 CHANNELS = [
     'aljazeeraenglish', 'cgtnofficial', 'france24_en',
     'weathernewslive', 'gbnews', 'bbcnews',
@@ -100,6 +107,23 @@ def fmt(event, data):
         return f"{ts()} {tag} {u}"
     return None
 
+def _print_footer(who, count, close_code, close_reason, not_live, interrupted):
+    # Honest close reporting. Not-live and stream-end are terminal and never
+    # carry the upgrade upsell - that footer only shows on real quota / rate
+    # limit closes. A clean Ctrl+C stop stays neutral.
+    if not_live or close_code == CODE_NOT_LIVE:
+        print(f"\n\n  {C_YELLOW}@{who}{R} {D}is not live yet - connect once they go live.{R}\n")
+        return
+    if close_code == CODE_STREAM_END:
+        print(f"\n\n  {D}@{who}'s live ended - {B}{count}{R}{D} events received.{R}\n")
+        return
+    if close_code in LIMIT_CODES:
+        reason = close_reason.strip() if close_reason else "Limit reached."
+        print(f"\n\n  {C_YELLOW}{reason}{R}")
+        print(f"  {D}Get unlimited access:{R} {C_CYAN}https://tik.tools{R}\n")
+        return
+    print(f"\n\n  {D}stopped - {B}{count}{R}{D} events received.{R}\n")
+
 async def async_main():
     api_key = DEMO_KEY
     target = ""
@@ -156,12 +180,17 @@ async def async_main():
     print()
 
     count = 0
+    not_live = False
+    interrupted = False
     try:
         async for message in ws:
             try:
                 m = json.loads(message)
                 ev = m.get('event', 'unknown')
                 d = m.get('data', m)
+                if ev == 'not_live':
+                    not_live = True
+                    continue
                 line = fmt(ev, d)
                 if line:
                     count += 1
@@ -171,11 +200,12 @@ async def async_main():
     except websockets.exceptions.ConnectionClosed:
         pass
     except asyncio.CancelledError:
-        pass
+        interrupted = True
     finally:
-        print(f"\n\n  {D}stopped - {B}{count}{R}{D} events received{R}")
-        print(f"  {D}Get unlimited access:{R} {C_CYAN}https://tik.tools{R}\n")
+        close_code = ws.close_code if ws else None
+        close_reason = (ws.close_reason if ws else "") or ""
         if ws: await ws.close()
+        _print_footer(who, count, close_code, close_reason, not_live, interrupted)
 
 def main():
     try:
