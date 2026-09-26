@@ -12,7 +12,7 @@ Agency rank feeds in Discord: gaming ranks, creator ranks and 99+ movers across 
 
 # TikTok LIVE API for Python
 
-**`tiktok-live-api` is the most complete, production-managed TikTok LIVE API for Python.** Receive real-time chat, gifts, likes, viewers, follows, shares and battle events from any TikTok LIVE stream over a single WebSocket - plus AI live captions with 60+ language translation, an Unreal Engine plugin, and SDKs in multiple languages. Managed signing works out of the box: no third-party sign server, no keys to configure. Zero maintenance, zero breakages.
+**`tiktok-live-api` is the most complete, production-managed TikTok LIVE API for Python.** Receive real-time chat, gifts, likes, viewers, follows, shares and battle events from any TikTok LIVE stream over a single WebSocket, with an Unreal Engine plugin and SDKs in multiple languages. Managed signing works out of the box: no third-party sign server, no keys to configure. Zero maintenance, zero breakages.
 
 [![PyPI version](https://img.shields.io/pypi/v/tiktok-live-api?color=%23ff0050&logo=pypi&logoColor=white)](https://pypi.org/project/tiktok-live-api/)
 [![PyPI downloads](https://img.shields.io/pypi/dm/tiktok-live-api)](https://pypi.org/project/tiktok-live-api/)
@@ -31,20 +31,17 @@ Agency rank feeds in Discord: gaming ranks, creator ranks and 99+ movers across 
     <td><br/><img width="150px" src="https://raw.githubusercontent.com/tiktool/tiktok-live-python/main/.github/logo.png" alt="TikTool Logo"><br/><br/></td>
     <td>
         <a href="https://tik.tools">
-            <strong>TikTool</strong> offers a fully managed TikTok LIVE API - real-time events, AI captions, CAPTCHA solving, and more. Free Community tier (forever). No credit card required.
+            <strong>TikTool</strong> offers a fully managed TikTok LIVE API - real-time events, CAPTCHA solving, and more. Free Community tier (forever). No credit card required.
         </a>
     </td>
 </tr>
 </table>
-
-**🎤 Exclusive:** [Real-Time Live Captions](#-live-captions-speech-to-text) - AI-powered speech-to-text with translation & speaker diarization. **No other TikTok library offers this.**
 
 ## Why tik.tools
 
 The premium managed alternative for TikTok LIVE data. What you get out of the box:
 
 - **Managed signing infrastructure.** Signing runs on our servers and works immediately - no third-party sign server to run, no separate key to configure.
-- **AI live captions and translation.** Real-time speech-to-text with 60+ language translation and speaker labels, available on no other TikTok LIVE library.
 - **Unreal Engine plugin.** Drive avatars, overlays and gameplay directly from live chat, gifts and battles.
 - **Agency and leaderboard intelligence.** Gifter leaderboards, gaming and creator ranks across regions, and eligible-creator discovery.
 - **Multi-language SDKs.** First-class Python and Node.js clients plus a plain WebSocket API for any language.
@@ -68,7 +65,7 @@ python -m tiktok_live_api
 - [Getting Started](#-getting-started)
 - [Try It Now - Live Demo](#-try-it-now--live-demo)
 - [Events](#-events)
-- [Live Captions (AI STT)](#-live-captions-speech-to-text)
+- [Live Captions (legacy)](#live-captions-legacy)
 - [Async Usage](#-async-usage)
 - [Chat Bot Example](#-chat-bot-example)
 - [Other Languages](#-other-languages)
@@ -84,8 +81,6 @@ python -m tiktok_live_api
 |---|---|---|---|
 | **Stability** | ✅ Managed API, 99.9% uptime | ❌ Breaks on TikTok updates | ❌ Breaks on TikTok updates |
 | **Setup** | ✅ 3 lines of code | ❌ Protobuf + reverse engineering | ❌ Protobuf + signing server |
-| **Live Captions (AI STT)** | ✅ Real-time speech-to-text | ❌ Not available | ❌ Not available |
-| **Translation** | ✅ 50+ languages | ❌ Not available | ❌ Not available |
 | **CAPTCHA Solving** | ✅ Built-in (Pro+) | ❌ Manual | ❌ Manual |
 | **Feed Discovery** | ✅ See who's live | ❌ Not available | ❌ Not available |
 | **Maintenance** | ✅ Zero - we handle everything | ❌ You fix breakages | ❌ You fix breakages |
@@ -310,7 +305,7 @@ Every event is dispatched by name. Each event payload extends the `BaseEvent` sh
 
 | Event | Description |
 |---|---|
-| `caption` | **NEW in v3.** TikTok native auto-captions on the LIVE WebSocket. `text`, `isFinal`, `startedAtMs`, `endsAtMs`. Independent of the operator-managed [TikTok Live Captions](https://tik.tools/captions) product. |
+| `caption` | **NEW in v3.** TikTok native captions, delivered on the standard LIVE WebSocket when TikTok provides them for the stream. `text`, `isFinal`, `startedAtMs`, `endsAtMs`. |
 
 ### Creator-side events
 
@@ -411,35 +406,23 @@ client.connect()
 
 ---
 
-## 🎤 Live Captions (Speech-to-Text)
+## Live Captions (legacy)
 
-Transcribe and translate any TikTok LIVE stream in real-time. **This feature is unique to TikTool - no other TikTok library offers it.**
+The Live Captions service is no longer offered to new customers. It remains available for existing caption customers, and the `TikTokCaptions` client stays in this package for them. For free captions on any stream, use the `caption` event from TikTok native captions (see Native captions above).
 
 ```python
 from tiktok_live_api import TikTokCaptions
 
-captions = TikTokCaptions(
-    "streamer_username",
-    api_key="YOUR_API_KEY",
-    translate="en",       # translate to English (50+ languages)
-    diarization=True,     # identify who is speaking
-)
+captions = TikTokCaptions("streamer_username", api_key="YOUR_API_KEY", translate="en")
 
 @captions.on("caption")
 def on_caption(event):
-    speaker = event.get("speaker", "")
-    text = event["text"]
-    is_final = event.get("isFinal", False)
-    print(f"[{speaker}] {text}{'  ✓' if is_final else '...'}")
-
-@captions.on("translation")
-def on_translation(event):
-    print(f"  → {event['text']}")
+    print(event["text"])
 
 captions.run()
 ```
 
-### Caption Events
+### Caption Events (legacy)
 
 | Event | Description | Key Fields |
 |-------|-------------|------------|
