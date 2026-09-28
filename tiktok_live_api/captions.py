@@ -58,7 +58,7 @@ class TikTokCaptions:
         self.api_key = api_key or os.environ.get("TIKTOOL_API_KEY", "")
         if not self.api_key:
             raise ValueError(
-                "api_key is required. Get a free key at https://tik.tools"
+                "api_key is required. Get an API key at https://tik.tools/pricing (7-day free evaluation)."
             )
         self.translate = translate
         self.diarization = diarization
