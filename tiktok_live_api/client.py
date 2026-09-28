@@ -36,7 +36,8 @@ class TikTokLive:
 
     Args:
         unique_id: TikTok username (without @).
-        api_key: Your TikTool API key. Get one free at https://tik.tools
+        api_key: Your TikTool API key. Get one at https://tik.tools/pricing
+            (7-day free evaluation).
         auto_reconnect: Auto-reconnect on disconnect (default True).
         max_reconnect_attempts: Max reconnection attempts (default 5).
 
@@ -65,7 +66,7 @@ class TikTokLive:
         self.api_key = api_key or os.environ.get("TIKTOOL_API_KEY", "")
         if not self.api_key:
             raise ValueError(
-                "api_key is required. Get a free key at https://tik.tools"
+                "api_key is required. Get an API key at https://tik.tools/pricing (7-day free evaluation)."
             )
         self.auto_reconnect = auto_reconnect
         self.max_reconnect_attempts = max_reconnect_attempts

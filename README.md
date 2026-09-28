@@ -31,7 +31,7 @@ Agency rank feeds in Discord: gaming ranks, creator ranks and 99+ movers across 
     <td><br/><img width="150px" src="https://raw.githubusercontent.com/tiktool/tiktok-live-python/main/.github/logo.png" alt="TikTool Logo"><br/><br/></td>
     <td>
         <a href="https://tik.tools">
-            <strong>TikTool</strong> offers a fully managed TikTok LIVE API - real-time events, CAPTCHA solving, and more. Free Community tier (forever). No credit card required.
+            <strong>TikTool</strong> offers a fully managed TikTok LIVE API - real-time events, CAPTCHA solving, and more. Sandbox: free 7-day evaluation. No credit card required.
         </a>
     </td>
 </tr>
@@ -45,7 +45,7 @@ The premium managed alternative for TikTok LIVE data. What you get out of the bo
 - **Unreal Engine plugin.** Drive avatars, overlays and gameplay directly from live chat, gifts and battles.
 - **Agency and leaderboard intelligence.** Gifter leaderboards, gaming and creator ranks across regions, and eligible-creator discovery.
 - **Multi-language SDKs.** First-class Python and Node.js clients plus a plain WebSocket API for any language.
-- **Free Sandbox tier.** Start building for free, upgrade only when you need higher limits or unmasked data.
+- **Sandbox: free 7-day evaluation.** Build and test for 7 days from account creation, then move to a paid plan (Basic and up) to keep going.
 
 ## 🚀 One-Command Quick Start
 
@@ -85,7 +85,7 @@ python -m tiktok_live_api
 | **Feed Discovery** | ✅ See who's live | ❌ Not available | ❌ Not available |
 | **Maintenance** | ✅ Zero - we handle everything | ❌ You fix breakages | ❌ You fix breakages |
 | **Multi-Language** | ✅ Python, Node.js, Java, Go, C# | Python only | Node.js only |
-| **Free Tier** | ✅ 5,000 req/day, 3 concurrent WS, 60 connects/hr, 2h per WS | ✅ Free (when it works) | ✅ Free (when it works) |
+| **Free Evaluation** | Sandbox: 7 days, 20 req/min, 5,000 req/day, 3 concurrent WS, 60 connects/hr, 2 hours per WebSocket connection | Free (when it works) | Free (when it works) |
 
 ---
 
@@ -97,9 +97,9 @@ python -m tiktok_live_api
 pip install tiktok-live-api
 ```
 
-### 2. Get your free API key
+### 2. Get an API key
 
-Go to [tik.tools](https://tik.tools) → Sign up → Copy your API key. No credit card required.
+Go to [tik.tools](https://tik.tools) → Sign up → Copy your API key. No credit card required for the 7-day Sandbox evaluation; after that, pick a plan at [tik.tools/pricing](https://tik.tools/pricing).
 
 ### 3. Connect
 
@@ -129,14 +129,14 @@ That's it. **No protobuf, no signing servers, no reverse engineering, no breakag
 
 ## 🚀 Try It Now - Live Demo
 
-Copy-paste, run, see real-time TikTok events in your terminal. Works on the free **Community** tier - 2h per WS, runs as long as the stream is live.
+Copy-paste, run, see real-time TikTok events in your terminal. Works on **Sandbox** during the 7-day evaluation (2 hours per WebSocket connection) and on every paid plan. Runs as long as the stream is live.
 
 ```python
 # demo.py - TikTok LIVE in real time
 # pip install tiktok-live-api
 from tiktok_live_api import TikTokLive
 
-API_KEY       = "YOUR_API_KEY"        # Get free key → https://tik.tools
+API_KEY       = "YOUR_API_KEY"        # Get an API key → https://tik.tools/pricing
 LIVE_USERNAME = "tv_asahi_news"       # Any live TikTok username
 
 client = TikTokLive(LIVE_USERNAME, api_key=API_KEY)
@@ -175,7 +175,7 @@ def on_viewers(event):
 def on_disconnect(event):
     print(f"\n📊 Disconnected. Received {events} events.\n")
 
-# Press Ctrl+C to stop. Community tier caps each WebSocket at 2 hours.
+# Press Ctrl+C to stop. Sandbox caps each WebSocket connection at 2 hours.
 client.run()
 ```
 
@@ -531,7 +531,7 @@ client.run()
 
 | Tier | Weekly | Monthly | Requests / day | Concurrent WS | Connects / hour |
 |------|--------|---------|----------------|---------------|-----------------|
-| Sandbox / Community | Free | Free | 5,000 | 3 | 60 |
+| Sandbox (7-day evaluation) | Free for 7 days | Free for 7 days | 5,000 (20 / min) | 3 | 60 |
 | Basic | $7 | $19 | 10,000 | 20 | Unlimited |
 | Pro | $15 | $49 | 75,000 | 50 | Unlimited |
 | Ultra | $45 | $149 | 300,000 | 250 | Unlimited |
@@ -540,11 +540,11 @@ client.run()
 Full pricing + checkout: https://tik.tools/pricing
 
 ## Tiers
-Tier ladder (each includes everything below it): Sandbox -> Basic -> Pro -> Ultra -> Global Agency. Sandbox is free with reduced rate limits + masked identifiers on intelligence endpoints; paid tiers raise limits and unmask data. Outgoing webhooks need Basic+. The agency intelligence endpoints (gaming ranks, movers, eligible-creator finder, gifter intel) need Global Agency.
+Tier ladder (each includes everything below it): Sandbox -> Basic -> Pro -> Ultra -> Global Agency. Sandbox is a free 7-day evaluation (counted from account creation) with reduced rate limits + masked identifiers on intelligence endpoints; after 7 days the key is refused (WebSocket close 4401, REST 403) until the account moves to Basic or higher; paid tiers raise limits and unmask data. Outgoing webhooks need Basic+. The agency intelligence endpoints (gaming ranks, movers, eligible-creator finder, gifter intel) need Global Agency.
 
 | Tier | Headline features |
 |------|-------------------|
-| Sandbox / Community | All core webcast + signing endpoints, real-time WS events (chat, gifts, viewers, battles, 18+ types), masked identifiers on intelligence endpoints. Development + evaluation only. |
+| Sandbox (7-day evaluation) | All core webcast + signing endpoints, real-time WS events (chat, gifts, viewers, battles, 18+ types), masked identifiers on intelligence endpoints. Development + evaluation only. |
 | Basic | Everything in Sandbox, plus outgoing webhooks and chat send. Higher rate limits and more concurrent WS. |
 | Pro | Full unmasked Leaderboard API, Feed Discovery, user profiles, built-in CAPTCHA solving, priority chat. |
 | Ultra | Everything in Pro, plus Gift Catalog, unmasked League Rankings, and peak-viewer / high-value-gift webhook events. |
@@ -629,7 +629,7 @@ asyncio.run(main())
 
 Modes: `global` (all regions), `region` (single region code), `league` (region + league class, e.g. `B2`). Update the filter mid-stream by sending `{"type":"update_filter","mode":"global","min_diamonds":5000}` - no reconnect needed.
 
-Get your free API key → [tik.tools](https://tik.tools)
+Get an API key → [tik.tools/pricing](https://tik.tools/pricing) (7-day free evaluation)
 
 ---
 
