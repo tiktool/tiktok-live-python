@@ -134,7 +134,9 @@ class TikTool:
     async def moderation_mutes(self, unique_id: str): return await self.request("/webcast/moderation/mutes", query=self._uid(unique_id))
     async def moderation_bans(self, unique_id: str): return await self.request("/webcast/moderation/bans", query=self._uid(unique_id))
 
-    # --- CAPTCHA solver (Pro+) ---
+    # --- Challenge helpers (Pro+) ---
+    # Pass the challenge payload your app received as `body`; returns the helper
+    # result dict documented at https://tik.tools/docs.
     async def solve_puzzle(self, body: dict): return await self.request("/captcha/solve/puzzle", "POST", body=body)
     async def solve_rotate(self, body: dict): return await self.request("/captcha/solve/rotate", "POST", body=body)
     async def solve_shapes(self, body: dict): return await self.request("/captcha/solve/shapes", "POST", body=body)

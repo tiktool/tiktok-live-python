@@ -31,7 +31,7 @@ Agency rank feeds in Discord: gaming ranks, creator ranks and top movers across 
     <td><br/><img width="150px" src="https://raw.githubusercontent.com/tiktool/tiktok-live-python/main/.github/logo.png" alt="TikTool Logo"><br/><br/></td>
     <td>
         <a href="https://tik.tools">
-            <strong>TikTool</strong> offers a fully managed TikTok LIVE API - real-time events, CAPTCHA solving, and more. Sandbox: free 7-day evaluation. No credit card required.
+            <strong>TikTool</strong> offers a fully managed TikTok LIVE API - real-time events, challenge helpers, and more. Sandbox: free 7-day evaluation. No credit card required.
         </a>
     </td>
 </tr>
@@ -81,7 +81,7 @@ python -m tiktok_live_api
 |---|---|---|---|
 | **Stability** | Managed API, maintained by TikTool | You track TikTok updates | You track TikTok updates |
 | **Setup** | 3 lines of code | Protobuf decoding | Protobuf decoding + extra services |
-| **CAPTCHA Solving** | Built-in (Pro+) | Manual | Manual |
+| **Challenge helpers** | Built-in (Pro+) | Manual | Manual |
 | **Feed Discovery** | See who's live | Not available | Not available |
 | **Maintenance** | Handled by TikTool | You fix breakages | You fix breakages |
 | **Multi-Language** | Python, Node.js, Java, Go, C# | Python only | Node.js only |
@@ -548,7 +548,7 @@ Tier ladder (each includes everything below it): Sandbox -> Basic -> Pro -> Ultr
 |------|-------------------|
 | Sandbox (7-day evaluation) | All core webcast endpoints, real-time WS events (chat, gifts, viewers, battles, 18+ types), masked identifiers on intelligence endpoints. Development + evaluation only. |
 | Basic | Everything in Sandbox, plus outgoing webhooks. Higher rate limits and more concurrent WS. |
-| Pro | Full unmasked Leaderboard API, Feed Discovery, user profiles, built-in CAPTCHA solving, priority chat. |
+| Pro | Full unmasked Leaderboard API, Feed Discovery, user profiles, built-in challenge helpers, priority chat. |
 | Ultra | Everything in Pro, plus Gift Catalog, unmasked League Rankings, and peak-viewer / high-value-gift webhook events. |
 | Global Agency | Everything in Ultra, plus Gaming Ranks (all regions), Live Gifter Firehose WS, unmasked Gifter Leaderboard, CRM + watchlist, follower-milestone webhooks, and IP allowlist. |
 
