@@ -94,7 +94,7 @@ def fmt(event, data):
         name = data.get('giftName', 'gift')
         n = data.get('repeatCount', 1)
         d2 = data.get('diamondCount', 0)
-        return f"{ts()} {tag}{pad}  {B}{u}{R}  {C_YELLOW}{name}{R} x{n} {D}({d2}💎){R}"
+        return f"{ts()} {tag}{pad}  {B}{u}{R}  {C_YELLOW}{name}{R} x{n} {D}({d2} diamonds){R}"
     elif event == 'like':
         return f"{ts()} {tag}{pad}  {B}{u}{R}  {D}total {data.get('totalLikeCount', 0):,}{R}"
     elif event == 'member':
@@ -120,7 +120,7 @@ def _print_footer(who, count, close_code, close_reason, not_live, interrupted):
     if close_code in LIMIT_CODES:
         reason = close_reason.strip() if close_reason else "Limit reached."
         print(f"\n\n  {C_YELLOW}{reason}{R}")
-        print(f"  {D}Get unlimited access:{R} {C_CYAN}https://tik.tools{R}\n")
+        print(f"  {D}Upgrade for higher limits:{R} {C_CYAN}https://tik.tools{R}\n")
         return
     print(f"\n\n  {D}stopped - {B}{count}{R}{D} events received.{R}\n")
 
@@ -154,7 +154,7 @@ async def async_main():
             who = target
             print(f" {C_GREEN}●{R}")
         else:
-            print(f" {C_RED}✗{R}\n\n  {C_RED}Stream not found.{R} Make sure {B}@{target}{R} is live.\n")
+            print(f" {C_RED}x{R}\n\n  {C_RED}Stream not found.{R} Make sure {B}@{target}{R} is live.\n")
             sys.exit(1)
     else:
         print(f"  {D}scanning for live streams...{R}\n")

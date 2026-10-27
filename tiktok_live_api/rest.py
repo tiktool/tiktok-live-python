@@ -5,7 +5,7 @@ Example:
     from tiktok_live_api import TikTool
 
     api = TikTool(api_key="YOUR_KEY")
-    status = await api.live_status("charlidamelio")
+    status = await api.live_status("creator_username")
     board = await api.leaderboard(region="US+")
     recruits = await api.eligible_creators(region="US+", limit=50)
 
@@ -74,7 +74,7 @@ class TikTool:
         """Low-level request. Use the named methods below; exposed for unwrapped endpoints."""
         return await asyncio.to_thread(self._do, path, method, query, body)
 
-    # --- Signing / connection ---
+    # --- Connection ---
     async def sign_url(self, url: str): return await self.request("/webcast/sign_url", "POST", body={"url": url})
     async def sign_websocket(self, body: dict): return await self.request("/webcast/sign_websocket", "POST", body=body)
     async def ws_credentials(self, unique_id: str): return await self.request("/webcast/ws_credentials", query=self._uid(unique_id))
@@ -124,7 +124,6 @@ class TikTool:
     async def hashtag_list(self, **query): return await self.request("/webcast/hashtag_list", query=query)
     async def fetch(self, body: dict): return await self.request("/webcast/fetch", "POST", body=body)
     async def feed(self, **query): return await self.request("/webcast/feed", query=query)
-    async def chat(self, unique_id: str, **query): return await self.request("/webcast/chat", query={**self._uid(unique_id), **query})
 
     # --- Live analytics ---
     async def analytics_video_list(self, **query): return await self.request("/webcast/live_analytics/video_list", query=query)

@@ -4,8 +4,8 @@ build-backend = "hatchling.build"
 
 [project]
 name = "tiktok-live-api"
-version = "1.8.6"
-description = "TikTok LIVE API for Python: real-time WebSocket chat, gifts, likes, viewers and battles. Managed signing, no sign server. Async and typed."
+version = "1.8.7"
+description = "TikTok LIVE API for Python: real-time WebSocket chat, gifts, likes, viewers and battles over one managed WebSocket. Async and typed."
 readme = "README.md"
 license = {text = "MIT"}
 requires-python = ">=3.8"
@@ -27,7 +27,6 @@ keywords = [
     "tiktok-events",
     "tiktok-data",
     "tiktok-stream",
-    "tiktok-scraper",
     "tiktok-agency",
     "tiktok-overlay",
     "tiktok-live-overlay",
@@ -43,7 +42,6 @@ keywords = [
     "unreal-engine",
     "agency",
     "leaderboard",
-    "euler-stream",
     "tiktok-tools"
 ]
 classifiers = [
@@ -81,3 +79,6 @@ Changelog = "https://github.com/tiktool/tiktok-live-python/releases"
 
 [tool.hatch.build.targets.wheel]
 packages = ["tiktok_live_api"]
+
+[tool.hatch.build.targets.sdist]
+include = ["tiktok_live_api", "README.md", "LICENSE", "pyproject.toml"]

@@ -4,7 +4,7 @@
   </a>
 </p>
 
-Agency rank feeds in Discord: gaming ranks, creator ranks and 99+ movers across all 30 regions, copy-paste usernames for backstage. /ranks to start (Global Agency).
+Agency rank feeds in Discord: gaming ranks, creator ranks and top movers across regions, copy-paste usernames for backstage. /ranks to start (Global Agency).
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/tiktool/tiktok-live-python/main/banner.png" alt="tiktok-live-api Python" width="100%" />
@@ -12,7 +12,7 @@ Agency rank feeds in Discord: gaming ranks, creator ranks and 99+ movers across 
 
 # TikTok LIVE API for Python
 
-**`tiktok-live-api` is the most complete, production-managed TikTok LIVE API for Python.** Receive real-time chat, gifts, likes, viewers, follows, shares and battle events from any TikTok LIVE stream over a single WebSocket, with an Unreal Engine plugin and SDKs in multiple languages. Managed signing works out of the box: no third-party sign server, no keys to configure. Zero maintenance, zero breakages.
+**`tiktok-live-api` is a managed TikTok LIVE API for Python.** Receive real-time chat, gifts, likes, viewers, follows, shares and battle events from any TikTok LIVE stream over a single WebSocket, with an Unreal Engine plugin and SDKs in multiple languages. The managed connection works out of the box with only an API key and nothing to host yourself.
 
 [![PyPI version](https://img.shields.io/pypi/v/tiktok-live-api?color=%23ff0050&logo=pypi&logoColor=white)](https://pypi.org/project/tiktok-live-api/)
 [![PyPI downloads](https://img.shields.io/pypi/dm/tiktok-live-api)](https://pypi.org/project/tiktok-live-api/)
@@ -24,7 +24,7 @@ Agency rank feeds in Discord: gaming ranks, creator ranks and 99+ movers across 
   <img src="https://raw.githubusercontent.com/tiktool/tiktok-live-python/main/tiktok-live-api.gif" alt="TikTok Live API Demo - real-time chat, gifts, and viewer events" width="700">
 </p>
 
-> **99.9% uptime** - Never breaks when TikTok updates. No protobuf, no reverse engineering, no maintenance required. Powered by the [TikTool](https://tik.tools) managed WebSocket API.
+> No protobuf and nothing to maintain on your side. Powered by the [TikTool](https://tik.tools) managed WebSocket API.
 
 <table>
 <tr>
@@ -41,13 +41,13 @@ Agency rank feeds in Discord: gaming ranks, creator ranks and 99+ movers across 
 
 The premium managed alternative for TikTok LIVE data. What you get out of the box:
 
-- **Managed signing infrastructure.** Signing runs on our servers and works immediately - no third-party sign server to run, no separate key to configure.
+- **Managed connection.** Connections are handled by the service and work immediately with only your API key.
 - **Unreal Engine plugin.** Drive avatars, overlays and gameplay directly from live chat, gifts and battles.
 - **Agency and leaderboard intelligence.** Gifter leaderboards, gaming and creator ranks across regions, and eligible-creator discovery.
 - **Multi-language SDKs.** First-class Python and Node.js clients plus a plain WebSocket API for any language.
 - **Sandbox: free 7-day evaluation.** Build and test for 7 days from account creation, then move to a paid plan (Basic and up) to keep going.
 
-## 🚀 One-Command Quick Start
+## One-Command Quick Start
 
 Instantly connect to a live TikTok stream and print real-time events to your terminal.
 
@@ -61,35 +61,35 @@ python -m tiktok_live_api
 
 ## Table of Contents
 
-- [Why tiktok-live-api?](#-why-tiktok-live-api)
-- [Getting Started](#-getting-started)
-- [Try It Now - Live Demo](#-try-it-now--live-demo)
-- [Events](#-events)
+- [Why tiktok-live-api?](#why-tiktok-live-api)
+- [Getting Started](#getting-started)
+- [Try It Now - Live Demo](#try-it-now---live-demo)
+- [Events](#events)
 - [Live Captions (legacy)](#live-captions-legacy)
-- [Async Usage](#-async-usage)
-- [Chat Bot Example](#-chat-bot-example)
-- [Other Languages](#-other-languages)
-- [Pricing](#-pricing)
+- [Async Usage](#async-usage)
+- [Chat Bot Example](#chat-bot-example)
+- [Other Languages](#other-languages)
+- [Pricing](#pricing-and-limits-usd)
 - [Star History](#star-history)
 - [License](#license)
 
 ---
 
-## 🆚 Why tiktok-live-api?
+## Why tiktok-live-api?
 
 | | **tiktok-live-api** | TikTokLive (isaackogan) | TikTok-Live-Connector (Node.js) |
 |---|---|---|---|
-| **Stability** | ✅ Managed API, 99.9% uptime | ❌ Breaks on TikTok updates | ❌ Breaks on TikTok updates |
-| **Setup** | ✅ 3 lines of code | ❌ Protobuf + reverse engineering | ❌ Protobuf + signing server |
-| **CAPTCHA Solving** | ✅ Built-in (Pro+) | ❌ Manual | ❌ Manual |
-| **Feed Discovery** | ✅ See who's live | ❌ Not available | ❌ Not available |
-| **Maintenance** | ✅ Zero - we handle everything | ❌ You fix breakages | ❌ You fix breakages |
-| **Multi-Language** | ✅ Python, Node.js, Java, Go, C# | Python only | Node.js only |
+| **Stability** | Managed API, maintained by TikTool | You track TikTok updates | You track TikTok updates |
+| **Setup** | 3 lines of code | Protobuf decoding | Protobuf decoding + extra services |
+| **CAPTCHA Solving** | Built-in (Pro+) | Manual | Manual |
+| **Feed Discovery** | See who's live | Not available | Not available |
+| **Maintenance** | Handled by TikTool | You fix breakages | You fix breakages |
+| **Multi-Language** | Python, Node.js, Java, Go, C# | Python only | Node.js only |
 | **Free Evaluation** | Sandbox: 7 days, 20 req/min, 5,000 req/day, 3 concurrent WS, 60 connects/hr, 2 hours per WebSocket connection | Free (when it works) | Free (when it works) |
 
 ---
 
-## ⚡ Getting Started
+## Getting Started
 
 ### 1. Install
 
@@ -114,7 +114,7 @@ def on_chat(event):
 
 @client.on("gift")
 def on_gift(event):
-    print(f"{event['user']['uniqueId']} sent {event['giftName']} ({event['diamondCount']} 💎)")
+    print(f"{event['user']['uniqueId']} sent {event['giftName']} ({event['diamondCount']} diamonds)")
 
 @client.on("roomUserSeq")
 def on_viewers(event):
@@ -123,11 +123,11 @@ def on_viewers(event):
 client.run()
 ```
 
-That's it. **No protobuf, no signing servers, no reverse engineering, no breakages.**
+That's it. **No protobuf and nothing to host yourself.**
 
 ---
 
-## 🚀 Try It Now - Live Demo
+## Try It Now - Live Demo
 
 Copy-paste, run, see real-time TikTok events in your terminal. Works on **Sandbox** during the 7-day evaluation (2 hours per WebSocket connection) and on every paid plan. Runs as long as the stream is live.
 
@@ -137,50 +137,50 @@ Copy-paste, run, see real-time TikTok events in your terminal. Works on **Sandbo
 from tiktok_live_api import TikTokLive
 
 API_KEY       = "YOUR_API_KEY"        # Get an API key → https://tik.tools/pricing
-LIVE_USERNAME = "tv_asahi_news"       # Any live TikTok username
+LIVE_USERNAME = "creator_username"    # Any live TikTok username
 
 client = TikTokLive(LIVE_USERNAME, api_key=API_KEY)
 events = 0
 
 @client.on("connected")
 def on_connected(event):
-    print(f"\n✅ Connected to @{LIVE_USERNAME} - streaming events...\n")
+    print(f"\nConnected to @{LIVE_USERNAME} - streaming events...\n")
 
 @client.on("chat")
 def on_chat(event):
     global events; events += 1
-    print(f"💬 {event['user']['uniqueId']}: {event['comment']}")
+    print(f"[chat] {event['user']['uniqueId']}: {event['comment']}")
 
 @client.on("gift")
 def on_gift(event):
     global events; events += 1
-    print(f"🎁 {event['user']['uniqueId']} sent {event['giftName']} ({event.get('diamondCount', 0)}💎)")
+    print(f"[gift] {event['user']['uniqueId']} sent {event['giftName']} ({event.get('diamondCount', 0)} diamonds)")
 
 @client.on("like")
 def on_like(event):
     global events; events += 1
-    print(f"❤️  {event['user']['uniqueId']} liked × {event.get('likeCount', 0)}")
+    print(f"[like] {event['user']['uniqueId']} liked × {event.get('likeCount', 0)}")
 
 @client.on("member")
 def on_member(event):
     global events; events += 1
-    print(f"👋 {event['user']['uniqueId']} joined")
+    print(f"[join] {event['user']['uniqueId']} joined")
 
 @client.on("roomUserSeq")
 def on_viewers(event):
     global events; events += 1
-    print(f"👀 Viewers: {event['viewerCount']}")
+    print(f"[viewers] Viewers: {event['viewerCount']}")
 
 @client.on("disconnected")
 def on_disconnect(event):
-    print(f"\n📊 Disconnected. Received {events} events.\n")
+    print(f"\nDisconnected. Received {events} events.\n")
 
 # Press Ctrl+C to stop. Sandbox caps each WebSocket connection at 2 hours.
 client.run()
 ```
 
 <details>
-<summary><strong>🔌 Pure WebSocket version (no SDK)</strong></summary>
+<summary><strong>Pure WebSocket version (no SDK)</strong></summary>
 
 ```python
 # ws-demo.py - Pure WebSocket, zero dependencies
@@ -188,26 +188,26 @@ client.run()
 import asyncio, websockets, json
 
 API_KEY       = "YOUR_API_KEY"
-LIVE_USERNAME = "tv_asahi_news"
+LIVE_USERNAME = "creator_username"
 
 async def listen():
     url = f"wss://api.tik.tools?uniqueId={LIVE_USERNAME}&apiKey={API_KEY}"
     events = 0
     async with websockets.connect(url) as ws:
-        print(f"\n✅ Connected to @{LIVE_USERNAME} - streaming events...\n")
+        print(f"\nConnected to @{LIVE_USERNAME} - streaming events...\n")
         async for message in ws:
             msg = json.loads(message)
             events += 1
             data = msg.get("data", {})
             user = data.get("user", {}).get("uniqueId", "")
             event = msg.get("event", "")
-            if event == "chat":        print(f"💬 {user}: {data.get('comment', '')}")
-            elif event == "gift":      print(f"🎁 {user} sent {data.get('giftName', '')}")
-            elif event == "like":      print(f"❤️  {user} liked × {data.get('likeCount', 0)}")
-            elif event == "member":    print(f"👋 {user} joined")
-            elif event == "roomUserSeq": print(f"👀 Viewers: {data.get('viewerCount', 0)}")
-            else:                      print(f"📦 {event}")
-    print(f"\n📊 Disconnected. Received {events} events.\n")
+            if event == "chat":        print(f"[chat] {user}: {data.get('comment', '')}")
+            elif event == "gift":      print(f"[gift] {user} sent {data.get('giftName', '')}")
+            elif event == "like":      print(f"[like] {user} liked × {data.get('likeCount', 0)}")
+            elif event == "member":    print(f"[join] {user} joined")
+            elif event == "roomUserSeq": print(f"[viewers] Viewers: {data.get('viewerCount', 0)}")
+            else:                      print(f"[event] {event}")
+    print(f"\nDisconnected. Received {events} events.\n")
 
 asyncio.run(listen())
 ```
@@ -230,7 +230,7 @@ async def main():
     api = TikTool(api_key="YOUR_KEY")
 
     # Live status (single + bulk)
-    await api.live_status("charlidamelio")
+    await api.live_status("creator_username")
     await api.bulk_live_check(["user1", "user2", "user3"])
 
     # Leaderboards + rankings
@@ -242,7 +242,7 @@ async def main():
     recruits = await api.eligible_creators(region="US+", limit=50, min_score=1000)
 
     # Profiles + gifts
-    await api.profile_info("khaby.lame")
+    await api.profile_info("creator_username")
     await api.gifts_by_country("US")
 
 asyncio.run(main())
@@ -264,7 +264,7 @@ See [the full endpoint + tier matrix](https://tik.tools/docs).
 
 ---
 
-## 📋 Events (54 v3 event types)
+## Events (54 v3 event types)
 
 Every event is dispatched by name. Each event payload extends the `BaseEvent` shape (`type`, `timestamp`, `msgId`, optional `protoVersion: 1 | 2 | 3`).
 
@@ -432,7 +432,7 @@ captions.run()
 
 ---
 
-## 🔄 Async Usage
+## Async Usage
 
 For integration with async frameworks (FastAPI, Django Channels, etc.):
 
@@ -454,7 +454,7 @@ asyncio.run(main())
 
 ---
 
-## 🤖 Chat Bot Example
+## Chat Bot Example
 
 ```python
 from tiktok_live_api import TikTokLive
@@ -471,13 +471,13 @@ def on_chat(event):
     user = event["user"]["uniqueId"]
 
     if msg == "!hello":
-        print(f">> BOT: Welcome {user}! 👋")
+        print(f">> BOT: Welcome {user}!")
     elif msg == "!stats":
         print(f">> BOT: {message_count} messages, {len(gift_leaderboard)} gifters")
     elif msg == "!top":
         top = sorted(gift_leaderboard.items(), key=lambda x: -x[1])[:5]
         for i, (name, diamonds) in enumerate(top):
-            print(f"  {i+1}. {name} - {diamonds} 💎")
+            print(f"  {i+1}. {name} - {diamonds} diamonds")
 
 @client.on("gift")
 def on_gift(event):
@@ -490,7 +490,7 @@ client.run()
 
 ---
 
-## 🌐 Other Languages
+## Other Languages
 
 TikTool Live is available in every major language:
 
@@ -529,13 +529,15 @@ client.run()
 
 ## Pricing and limits (USD)
 
-| Tier | Weekly | Monthly | Requests / day | Concurrent WS | Connects / hour |
-|------|--------|---------|----------------|---------------|-----------------|
-| Sandbox (7-day evaluation) | Free for 7 days | Free for 7 days | 5,000 (20 / min) | 3 | 60 |
-| Basic | $7 | $19 | 10,000 | 20 | Unlimited |
-| Pro | $15 | $49 | 75,000 | 50 | Unlimited |
-| Ultra | $45 | $149 | 300,000 | 250 | Unlimited |
-| Global Agency | $119 | $399 | 1,000,000 | 500 | Unlimited |
+| Tier | Weekly | Monthly | Requests / day | Concurrent WS |
+|------|--------|---------|----------------|---------------|
+| Sandbox (7-day evaluation) | Free for 7 days | Free for 7 days | 5,000 (20 / min) | 3 |
+| Basic | $7 | $19 | 10,000 | 20 |
+| Pro | $15 | $49 | 75,000 | 50 |
+| Ultra | $45 | $149 | 300,000 | 250 |
+| Global Agency | $119 | $399 | 1,000,000 | 500 |
+
+Sandbox is also limited to 60 WebSocket connects per hour.
 
 Full pricing + checkout: https://tik.tools/pricing
 
@@ -544,8 +546,8 @@ Tier ladder (each includes everything below it): Sandbox -> Basic -> Pro -> Ultr
 
 | Tier | Headline features |
 |------|-------------------|
-| Sandbox (7-day evaluation) | All core webcast + signing endpoints, real-time WS events (chat, gifts, viewers, battles, 18+ types), masked identifiers on intelligence endpoints. Development + evaluation only. |
-| Basic | Everything in Sandbox, plus outgoing webhooks and chat send. Higher rate limits and more concurrent WS. |
+| Sandbox (7-day evaluation) | All core webcast endpoints, real-time WS events (chat, gifts, viewers, battles, 18+ types), masked identifiers on intelligence endpoints. Development + evaluation only. |
+| Basic | Everything in Sandbox, plus outgoing webhooks. Higher rate limits and more concurrent WS. |
 | Pro | Full unmasked Leaderboard API, Feed Discovery, user profiles, built-in CAPTCHA solving, priority chat. |
 | Ultra | Everything in Pro, plus Gift Catalog, unmasked League Rankings, and peak-viewer / high-value-gift webhook events. |
 | Global Agency | Everything in Ultra, plus Gaming Ranks (all regions), Live Gifter Firehose WS, unmasked Gifter Leaderboard, CRM + watchlist, follower-milestone webhooks, and IP allowlist. |
@@ -556,7 +558,7 @@ Tier ladder (each includes everything below it): Sandbox -> Basic -> Pro -> Ultr
 | POST /webcast/sign_url | Sandbox |
 | POST /webcast/sign_websocket | Sandbox |
 | GET /webcast/ws_credentials | Sandbox |
-| GET /webcast/fetch | Sandbox |
+| POST /webcast/fetch | Basic |
 | GET /webcast/room_id | Sandbox |
 | GET /webcast/room_info | Sandbox |
 | GET /webcast/room_video | Sandbox |
@@ -580,10 +582,9 @@ Tier ladder (each includes everything below it): Sandbox -> Basic -> Pro -> Ultr
 | GET /webcast/rate_limits | Sandbox |
 | POST /authentication/jwt | Sandbox |
 | GET /api/live/connect | Sandbox |
-| POST /chat-send | Basic |
 | GET/POST /api/webhooks | Basic |
 | POST /api/webhooks/{id}/test | Basic |
-| GET /ws/sweep | Basic |
+| POST /ws/sweep | Basic |
 | GET /webcast/feed | Pro |
 | POST /webcast/ranklist/regional | Pro |
 | GET /webcast/user_profile | Pro |
@@ -602,9 +603,9 @@ Tier ladder (each includes everything below it): Sandbox -> Basic -> Pro -> Ultr
 Full docs with request/response shapes and examples: https://tik.tools/docs
 
 ## What you get
-**Creators**: real-time live events (gifts, chat, viewers), your own live status + room info, earnings + analytics, signed CDN/stream URLs that do not expire.
-**Developers**: drop-in signing (works as a tiktok-live-connector backend - point the sign base at api.tik.tools), one-WebSocket fan-out (your IP never touches TikTok), bulk live checks, leaderboards, webhooks (HMAC-signed live.start/live.end and more), SDKs across languages.
-**Agencies (Global Agency)**: TikTok LIVE gaming ranks + creator ranks + 99+ movers across all 30 regions, eligible-creator recruiting finder, gifter intelligence (top gifters, profiles, leaderboards), and the Discord bot that posts copy-paste username batches for backstage.
+**Creators**: real-time live events (gifts, chat, viewers), your own live status + room info, earnings + analytics, stream URLs.
+**Developers**: one managed WebSocket per stream, bulk live checks, leaderboards, webhooks with HMAC verification (live.start/live.end and more), SDKs across languages.
+**Agencies (Global Agency)**: TikTok LIVE gaming ranks + creator ranks + top movers across regions, eligible-creator recruiting finder, gifter intelligence (top gifters, profiles, leaderboards), and the Discord bot that posts copy-paste username batches for backstage.
 
 ### Live Gifter Firehose - Global Agency
 
@@ -635,7 +636,7 @@ Get an API key → [tik.tools/pricing](https://tik.tools/pricing) (7-day free ev
 
 ## Star History
 
-If this project helps you, please consider giving it a ⭐ - it helps others discover it!
+If this project helps you, please consider giving it a star - it helps others discover it!
 
 <p align="center">
     <a href="https://github.com/tiktool/tiktok-live-python/stargazers">
@@ -647,11 +648,11 @@ If this project helps you, please consider giving it a ⭐ - it helps others dis
 
 ## Links
 
-- 🌐 **Website**: [tik.tools](https://tik.tools)
-- 📖 **Documentation**: [tik.tools/docs](https://tik.tools/docs)
-- 📦 **Node.js SDK**: [@tiktool/live on npm](https://www.npmjs.com/package/@tiktool/live)
-- 🐍 **PyPI**: [tiktok-live-api](https://pypi.org/project/tiktok-live-api/)
-- 💻 **GitHub (Node.js)**: [tiktool/tiktok-live-api](https://github.com/tiktool/tiktok-live-api)
+- **Website**: [tik.tools](https://tik.tools)
+- **Documentation**: [tik.tools/docs](https://tik.tools/docs)
+- **Node.js SDK**: [@tiktool/live on npm](https://www.npmjs.com/package/@tiktool/live)
+- **PyPI**: [tiktok-live-api](https://pypi.org/project/tiktok-live-api/)
+- **GitHub (Node.js)**: [tiktool/tiktok-live-api](https://github.com/tiktool/tiktok-live-api)
 
 ---
 
