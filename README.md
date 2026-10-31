@@ -15,7 +15,6 @@ Agency rank feeds in Discord: gaming ranks, creator ranks and top movers across 
 **`tiktok-live-api` is a managed TikTok LIVE API for Python.** Receive real-time chat, gifts, likes, viewers, follows, shares and battle events from any TikTok LIVE stream over a single WebSocket, with an Unreal Engine plugin and SDKs in multiple languages. The managed connection works out of the box with only an API key and nothing to host yourself.
 
 [![PyPI version](https://img.shields.io/pypi/v/tiktok-live-api?color=%23ff0050&logo=pypi&logoColor=white)](https://pypi.org/project/tiktok-live-api/)
-[![PyPI downloads](https://img.shields.io/pypi/dm/tiktok-live-api)](https://pypi.org/project/tiktok-live-api/)
 [![Python](https://img.shields.io/pypi/pyversions/tiktok-live-api)](https://pypi.org/project/tiktok-live-api/)
 [![Stars](https://img.shields.io/github/stars/tiktool/tiktok-live-python?style=flat&color=0274b5)](https://github.com/tiktool/tiktok-live-python/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
