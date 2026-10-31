@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "tiktok-live-api"
-version = "1.8.7"
+version = "1.8.8"
 description = "TikTok LIVE API for Python: real-time WebSocket chat, gifts, likes, viewers and battles over one managed WebSocket. Async and typed."
 readme = "README.md"
 license = {text = "MIT"}

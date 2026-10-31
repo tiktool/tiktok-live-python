@@ -31,7 +31,7 @@ Agency rank feeds in Discord: gaming ranks, creator ranks and top movers across 
     <td><br/><img width="150px" src="https://raw.githubusercontent.com/tiktool/tiktok-live-python/main/.github/logo.png" alt="TikTool Logo"><br/><br/></td>
     <td>
         <a href="https://tik.tools">
-            <strong>TikTool</strong> offers a fully managed TikTok LIVE API - real-time events, challenge helpers, and more. Sandbox: free 7-day evaluation. No credit card required.
+            <strong>TikTool</strong> offers a fully managed TikTok LIVE API - real-time events, challenge helpers, and more. Sandbox: 7-day evaluation, no credit card.
         </a>
     </td>
 </tr>
@@ -45,7 +45,7 @@ The premium managed alternative for TikTok LIVE data. What you get out of the bo
 - **Unreal Engine plugin.** Drive avatars, overlays and gameplay directly from live chat, gifts and battles.
 - **Agency and leaderboard intelligence.** Gifter leaderboards, gaming and creator ranks across regions, and eligible-creator discovery.
 - **Multi-language SDKs.** First-class Python and Node.js clients plus a plain WebSocket API for any language.
-- **Sandbox: free 7-day evaluation.** Build and test for 7 days from account creation, then move to a paid plan (Basic and up) to keep going.
+- **Sandbox: 7-day evaluation, no credit card.** Build and test for 7 days from account creation, then move to a paid plan (Basic and up) to keep going.
 
 ## One-Command Quick Start
 
@@ -85,7 +85,7 @@ python -m tiktok_live_api
 | **Feed Discovery** | See who's live | Not available | Not available |
 | **Maintenance** | Handled by TikTool | You fix breakages | You fix breakages |
 | **Multi-Language** | Python, Node.js, Java, Go, C# | Python only | Node.js only |
-| **Free Evaluation** | Sandbox: 7 days, 20 req/min, 5,000 req/day, 3 concurrent WS, 60 connects/hr, 2 hours per WebSocket connection | Free (when it works) | Free (when it works) |
+| **Evaluation** | Sandbox: 7-day evaluation, no credit card. 20 req/min, 5,000 req/day, 3 concurrent streams, 50 WebSocket sessions per 24h, 60 connects/hr, 2 hours per WebSocket connection | Open source, self-hosted | Open source, self-hosted |
 
 ---
 
@@ -264,7 +264,9 @@ See [the full endpoint + tier matrix](https://tik.tools/docs).
 
 ---
 
-## Events (54 v3 event types)
+## Events
+
+The API delivers 90+ real-time event types. The main ones are listed below.
 
 Every event is dispatched by name. Each event payload extends the `BaseEvent` shape (`type`, `timestamp`, `msgId`, optional `protoVersion: 1 | 2 | 3`).
 
@@ -408,7 +410,7 @@ client.connect()
 
 ## Live Captions (legacy)
 
-The Live Captions service is no longer offered to new customers. It remains available for existing caption customers, and the `TikTokCaptions` client stays in this package for them. For free captions on any stream, use the `caption` event from TikTok native captions (see Native captions above).
+The Live Captions service is no longer offered to new customers. It remains available for existing caption customers, and the `TikTokCaptions` client stays in this package for them. For captions on any stream, use the `caption` event from TikTok native captions (see Native captions above).
 
 ```python
 from tiktok_live_api import TikTokCaptions
@@ -531,18 +533,18 @@ client.run()
 
 | Tier | Weekly | Monthly | Requests / day | Concurrent WS |
 |------|--------|---------|----------------|---------------|
-| Sandbox (7-day evaluation) | Free for 7 days | Free for 7 days | 5,000 (20 / min) | 3 |
+| Sandbox | 7-day evaluation | No credit card | 5,000 (20 / min) | 3 |
 | Basic | $7 | $19 | 10,000 | 20 |
 | Pro | $15 | $49 | 75,000 | 50 |
 | Ultra | $45 | $149 | 300,000 | 250 |
 | Global Agency | $119 | $399 | 1,000,000 | 500 |
 
-Sandbox is also limited to 60 WebSocket connects per hour.
+Sandbox is also limited to 50 WebSocket sessions per 24 hours and 60 connects per hour.
 
 Full pricing + checkout: https://tik.tools/pricing
 
 ## Tiers
-Tier ladder (each includes everything below it): Sandbox -> Basic -> Pro -> Ultra -> Global Agency. Sandbox is a free 7-day evaluation (counted from account creation) with reduced rate limits + masked identifiers on intelligence endpoints; after 7 days the key is refused (WebSocket close 4401, REST 403) until the account moves to Basic or higher; paid tiers raise limits and unmask data. Outgoing webhooks need Basic+. The agency intelligence endpoints (gaming ranks, movers, eligible-creator finder, gifter intel) need Global Agency.
+Tier ladder (each includes everything below it): Sandbox -> Basic -> Pro -> Ultra -> Global Agency. Sandbox is a 7-day evaluation with no credit card (counted from account creation) with reduced rate limits + masked identifiers on intelligence endpoints; after 7 days the key is refused (WebSocket close 4401, REST 403) until the account moves to Basic or higher; paid tiers raise limits and unmask data. Outgoing webhooks need Basic+. The agency intelligence endpoints (gaming ranks, movers, eligible-creator finder, gifter intel) need Global Agency.
 
 | Tier | Headline features |
 |------|-------------------|
@@ -630,7 +632,7 @@ asyncio.run(main())
 
 Modes: `global` (all regions), `region` (single region code), `league` (region + league class, e.g. `B2`). Update the filter mid-stream by sending `{"type":"update_filter","mode":"global","min_diamonds":5000}` - no reconnect needed.
 
-Get an API key → [tik.tools/pricing](https://tik.tools/pricing) (7-day free evaluation)
+Get an API key → [tik.tools/pricing](https://tik.tools/pricing) (7-day evaluation, no credit card)
 
 ---
 
