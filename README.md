@@ -536,6 +536,7 @@ client.run()
 | Basic | $7 | $19 | 10,000 | 20 |
 | Pro | $15 | $49 | 75,000 | 50 |
 | Ultra | $45 | $149 | 300,000 | 250 |
+| Agency Starter | - (monthly only) | $99 | 75,000 (120 / min) | 100 |
 | Global Agency | $119 | $399 | 1,000,000 | 500 |
 
 Sandbox is also limited to 50 WebSocket sessions per 24 hours and 60 connects per hour.
@@ -547,9 +548,10 @@ Tier ladder (each includes everything below it): Sandbox -> Basic -> Pro -> Ultr
 
 | Tier | Headline features |
 |------|-------------------|
-| Sandbox (7-day evaluation) | All core webcast endpoints, real-time WS events (chat, gifts, viewers, battles, 18+ types), masked identifiers on intelligence endpoints. Development + evaluation only. |
+| Sandbox (7-day evaluation) | All core webcast endpoints, real-time WS events (chat, gifts, viewers, battles, 90+ types), masked identifiers on intelligence endpoints. Development + evaluation only. |
 | Basic | Everything in Sandbox, plus outgoing webhooks. Higher rate limits and more concurrent WS. |
 | Pro | Full unmasked Leaderboard API, Feed Discovery, user profiles, built-in challenge helpers, priority chat. |
+| Agency Starter | Monthly only. Agency dashboard plus API access: 75,000 requests/day, 120 / min, 100 concurrent WS, 12h max WS session, 1,000 profile lookups/day. |
 | Ultra | Everything in Pro, plus Gift Catalog, unmasked League Rankings, and peak-viewer / high-value-gift webhook events. |
 | Global Agency | Everything in Ultra, plus Gaming Ranks (all regions), Live Gifter Firehose WS, unmasked Gifter Leaderboard, CRM + watchlist, follower-milestone webhooks, and IP allowlist. |
 
