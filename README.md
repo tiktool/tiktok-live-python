@@ -410,7 +410,7 @@ client.connect()
 
 ## Live Captions (legacy)
 
-The Live Captions service is no longer offered to new customers. It remains available for existing caption customers, and the `TikTokCaptions` client stays in this package for them. For captions on any stream, use the `caption` event from TikTok native captions (see Native captions above).
+The Live Captions service has been retired. The `TikTokCaptions` client stays in this package for backward compatibility only and no longer connects. For captions on any stream, use the `caption` event from TikTok native captions (see Native captions above).
 
 ```python
 from tiktok_live_api import TikTokCaptions
